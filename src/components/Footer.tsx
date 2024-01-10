@@ -31,24 +31,26 @@ const SocialContainer = styled.div`
 `
 
 const SocialBg = styled.div`
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid #6c9981;
   border-radius: 50%;
-  background-color: #c8d1cc;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 1.4rem;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    background-color: #dee7e2;
-  }
+  transition: all 0.4s ease-in-out;
 `
 
 const SocialIcon = styled.img`
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    transform: scale(1.25);
+  }
 `
 
 const SiteMap = styled.div`
