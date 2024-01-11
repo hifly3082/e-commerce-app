@@ -43,6 +43,7 @@ const LogoContainer = styled.div`
 
 const Logo = styled.h1`
   font-weight: 700;
+  user-select: none;
 `
 
 const MenuContainer = styled.div`
