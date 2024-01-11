@@ -29,7 +29,7 @@ API: https://fakestoreapi.com/
 2. Clone the project repository or create a new Vite project:
 
 ```bash
-git clone https://github.com/hifly3082/ecommerce-app.git
+git clone https://github.com/hifly3082/e-commerce-app.git
 cd to-do-app
 ```
 
