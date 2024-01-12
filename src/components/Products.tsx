@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { products } from '../data'
 import ProductItem from './ProductItem'
 import { xs } from '../styles/responsive'
+import { useGetProducts } from '../api/fetch'
+import SmallSpinner from './Spinner'
 
 const Container = styled.div`
   display: flex;
@@ -15,14 +16,22 @@ const Container = styled.div`
 `
 
 const Title = styled.h2`
-  margin: auto;
+  margin: 2rem;
+  font-size: 2.4rem;
+  font-weight: 600;
 `
 
 const Products = () => {
+  const { products, loading } = useGetProducts()
+
+  if (loading) return <SmallSpinner />
+
   return (
     <>
       <Container>
         <Title>Products</Title>
+      </Container>
+      <Container>
         {products.map((item) => (
           <ProductItem item={item} key={item.id} />
         ))}

@@ -111,7 +111,7 @@ const Button = styled.button`
 
 const Product: React.FC = () => {
   const { id } = useParams()
-  const { product, loading, error } = useProductFetch(id)
+  const { product, loading } = useProductFetch(id)
 
   if (loading) return <SmallSpinner />
 
