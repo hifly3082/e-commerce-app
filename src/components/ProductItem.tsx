@@ -2,6 +2,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 const Info = styled.div`
   display: flex;
@@ -59,7 +60,13 @@ const Icon = styled.div`
   }
 `
 
-const Product = ({ item }: any) => {
+const ProductItem = ({ item }: any) => {
+  const navigate = useNavigate()
+
+  const handleClick = (id: string) => () => {
+    navigate(`/product/${id}`)
+  }
+
   return (
     <Container>
       <Image src={item.image} />
@@ -67,7 +74,7 @@ const Product = ({ item }: any) => {
         <Icon>
           <AddShoppingCartOutlinedIcon />
         </Icon>
-        <Icon>
+        <Icon onClick={handleClick(item.id)}>
           <SearchOutlinedIcon />
         </Icon>
         <Icon>
@@ -78,4 +85,4 @@ const Product = ({ item }: any) => {
   )
 }
 
-export default Product
+export default ProductItem

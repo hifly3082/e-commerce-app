@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mobile } from '../styles/responsive'
+import { xs } from '../styles/responsive'
 
 const Image = styled.img`
   width: 100%;
@@ -23,6 +23,9 @@ const Container = styled.div`
 
   &:hover ${Image} {
     width: 60%;
+  }
+  ${xs} {
+    height: 20vh;
   }
 `
 

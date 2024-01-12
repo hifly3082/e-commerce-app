@@ -1,6 +1,8 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { css } from '@emotion/react'
 
 const HeaderContainer = styled.div`
   height: 4rem;
@@ -44,6 +46,7 @@ const LogoContainer = styled.div`
 const Logo = styled.h1`
   font-weight: 700;
   user-select: none;
+  text-decoration: none;
 `
 
 const MenuContainer = styled.div`
@@ -59,7 +62,6 @@ const MenuItem = styled.div`
   margin-left: 1.6rem;
   cursor: pointer;
 `
-
 const Header = () => {
   return (
     <HeaderContainer>
@@ -72,13 +74,21 @@ const Header = () => {
           </SearchBar>
         </SearchContainer>
         <LogoContainer>
-          <Logo>MAV</Logo>
+          <Logo>
+            <Link
+              to='home'
+              style={{ textDecoration: 'none', color: 'initial' }}>
+              MAV
+            </Link>
+          </Logo>
         </LogoContainer>
         <MenuContainer>
           <MenuItem>register</MenuItem>
           <MenuItem>sign in</MenuItem>
           <MenuItem>
-            <AddShoppingCartOutlinedIcon />
+            <Link to='cart'>
+              <AddShoppingCartOutlinedIcon />
+            </Link>
           </MenuItem>
         </MenuContainer>
       </Wrapper>
