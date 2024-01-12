@@ -8,7 +8,8 @@ import {
   Navigate
 } from 'react-router-dom'
 import './App.css'
-import Spinner from './components/Spinner'
+
+import FullPageSpinner from './components/FullPageSpinner'
 
 const Layout = lazy(() => import('./components/Layout'))
 const Home = lazy(() => import('./pages/Home'))
@@ -20,13 +21,14 @@ const router = createBrowserRouter(
     <Route
       path='/*'
       element={
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<FullPageSpinner />}>
           <Layout>
             <Outlet />
           </Layout>
         </Suspense>
       }>
       <Route index element={<Navigate replace to='home' />} />
+
       <Route path='home' element={<Home />} />
       <Route path='cart' element={<Cart />} />
       <Route path='product/:id' element={<Product />} />
