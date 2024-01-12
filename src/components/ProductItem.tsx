@@ -62,9 +62,11 @@ const Icon = styled.div`
 
 const ProductItem = ({ item }: any) => {
   const navigate = useNavigate()
-  const handleClick = (id: string) => {
-    navigate(`/product/:${id}`)
+
+  const handleClick = (id: string) => () => {
+    navigate(`/product/${id}`)
   }
+
   return (
     <Container>
       <Image src={item.image} />
@@ -72,7 +74,7 @@ const ProductItem = ({ item }: any) => {
         <Icon>
           <AddShoppingCartOutlinedIcon />
         </Icon>
-        <Icon onClick={() => handleClick}>
+        <Icon onClick={handleClick(item.id)}>
           <SearchOutlinedIcon />
         </Icon>
         <Icon>
