@@ -11,6 +11,7 @@ const Spinner = styled.div`
   /* border: 0.5rem solid #f3f3f3;
   border-top: 0.5rem solid #3498db; */
   background: conic-gradient(#0000 20%, #3498db 80%);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 0.5rem), #000 0);
   -webkit-mask: radial-gradient(
     farthest-side,
     #0000 calc(100% - 0.5rem),
