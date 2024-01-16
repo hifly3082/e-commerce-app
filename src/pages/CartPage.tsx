@@ -1,7 +1,8 @@
-import React from 'react'
 import styled from 'styled-components'
-
-interface CartPageProps {}
+import { useSelector, useDispatch } from 'react-redux'
+import { cartSlice } from '../features/cart/cartSlice'
+import { ICartItem, IRootState } from '../types/types'
+import { useNavigate } from 'react-router'
 
 const Container = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ const ItemImage = styled.img`
   height: 100px;
   object-fit: cover;
   border-radius: 5px;
+  cursor: pointer;
 `
 
 const ItemDetails = styled.div`
@@ -48,43 +50,56 @@ const ItemPrice = styled.p`
   color: #666;
 `
 
-const CartPage: React.FC<CartPageProps> = () => {
-  const items = [
-    {
-      id: 1,
-      name: 'Item 1',
-      image: 'https://example.com/item1.jpg',
-      price: 19.99
-    },
-    {
-      id: 2,
-      name: 'Item 2',
-      image: 'https://example.com/item2.jpg',
-      price: 29.99
-    },
-    {
-      id: 3,
-      name: 'Item 3',
-      image: 'https://example.com/item3.jpg',
-      price: 39.99
-    }
-  ]
+const ItemQuantity = styled.p`
+  font-size: 1rem;
+  font-weight: 400;
+  color: #444;
+`
+
+const CartPage: React.FC = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const cartState = useSelector((state: IRootState) => state.cart)
+
+  const handleClearCart = () => {
+    dispatch(cartSlice.actions.clearCart())
+  }
+
+  const handleRemoveItem = (item: ICartItem) => {
+    dispatch(cartSlice.actions.removeItemFromCart(item))
+  }
+
+  const handleOverview = (id: number) => () => {
+    navigate(`/product/${id}`)
+  }
+
+  const totalSum = cartState.items.reduce(
+    (sum: number, item) => sum + item.price * item.quantity,
+    0
+  )
 
   return (
     <Container>
       <Header>
         <h2>Cart</h2>
-        <button>Clear Cart</button>
+        <button onClick={handleClearCart}>Clear Cart</button>
       </Header>
-      {items.map((item) => (
+      {cartState.items.map((item) => (
         <ItemContainer key={item.id}>
-          <ItemImage src={item.image} alt={item.name} />
+          <ItemImage
+            src={item.images[0]}
+            alt={item.title}
+            onClick={handleOverview(item.id)}
+          />
           <ItemDetails>
-            <ItemName>{item.name}</ItemName>
+            <ItemName>{item.title}</ItemName>
             <ItemPrice>${item.price}</ItemPrice>
+            <ItemQuantity>Quantity: {item.quantity}</ItemQuantity>
           </ItemDetails>
+          <button onClick={() => handleRemoveItem(item)}>Remove</button>
         </ItemContainer>
       ))}
+      <p>Total Sum: ${totalSum}</p>
     </Container>
   )
 }

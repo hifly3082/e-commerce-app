@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import SmallSpinner from './Spinner'
 import { useGetProductsQuery } from '../features/api/storeApi'
-import Carousel from './Slider'
-import ProductItem, { IProduct } from './ProductItem'
+import ProductItem from './ProductItem'
+import { IProductItem } from '../types/types'
 
 const Container = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ const Products: React.FC = () => {
       <Title>Products</Title>
 
       <ProductList>
-        {products.map((item: IProduct) => (
+        {products.map((item: IProductItem) => (
           <ProductItem item={item} key={item.id} />
         ))}
       </ProductList>
