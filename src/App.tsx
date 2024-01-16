@@ -1,3 +1,4 @@
+import { Provider } from 'react-redux'
 import { Suspense, lazy } from 'react'
 import {
   Route,
@@ -10,6 +11,7 @@ import {
 import './App.css'
 
 import FullPageSpinner from './components/FullPageSpinner'
+import store from './store/store'
 
 const Layout = lazy(() => import('./components/Layout'))
 const Home = lazy(() => import('./pages/Home'))
@@ -37,7 +39,11 @@ const router = createBrowserRouter(
 )
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  )
 }
 
 export default App
