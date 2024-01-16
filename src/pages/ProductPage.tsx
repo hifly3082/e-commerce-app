@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { useProductFetch } from '../api/fetch'
 import SmallSpinner from '../components/Spinner'
+import { useGetProductQuery } from '../features/api/storeApi'
 
 const Container = styled.div``
 
@@ -111,15 +111,19 @@ const Button = styled.button`
 
 const Product: React.FC = () => {
   const { id } = useParams()
-  const { product, loading } = useProductFetch(id)
+  const { data: product, isLoading, isError } = useGetProductQuery(id)
 
-  if (loading) return <SmallSpinner />
+  if (isLoading) return <SmallSpinner />
+
+  if (isError || !product) {
+    return <div>Something went wrong</div>
+  }
 
   return (
     <Container>
       <Wrapper>
         <ImgContainer>
-          <Image src={product.image} />
+          <Image src={product.images[0]} />
         </ImgContainer>
         <InfoContainer>
           <Title>{product.title}</Title>

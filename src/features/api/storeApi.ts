@@ -10,7 +10,7 @@ export const storeApi = createApi({
       query: () => `/categories`
     }),
     getProducts: builder.query({
-      query: () => `/products`
+      query: () => `/products?offset=0&limit=10`
     }),
     getProduct: builder.query({
       query: (id) => `/products/${id}`

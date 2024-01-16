@@ -14,9 +14,9 @@ import FullPageSpinner from './components/FullPageSpinner'
 import store from './store/store'
 
 const Layout = lazy(() => import('./components/Layout'))
-const Home = lazy(() => import('./pages/Home'))
-const Cart = lazy(() => import('./pages/Cart'))
-const Product = lazy(() => import('./pages/Product'))
+const Home = lazy(() => import('./pages/HomePage'))
+const Cart = lazy(() => import('./pages/CartPage'))
+const Product = lazy(() => import('./pages/ProductPage'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
