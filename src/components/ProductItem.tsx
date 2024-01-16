@@ -3,6 +3,18 @@ import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutl
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { ICategory } from './Categories'
+import { useDispatch } from 'react-redux'
+import { addItemToCart } from '../features/cart/cartSlice'
+
+export interface IProduct {
+  id: number
+  title: string
+  price: number
+  description: string
+  images: string[]
+  category: ICategory[]
+}
 
 const Info = styled.div`
   display: flex;
@@ -62,19 +74,26 @@ const Icon = styled.div`
 
 const ProductItem = ({ item }: any) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const handleClick = (id: string) => () => {
+  // const handleAddToCartClick = (id: string) => {
+  //   dispatch(addItemToCart({ id, price, quantity: 1 }))
+  // }
+
+  const handleOverviewClick = (id: string) => () => {
     navigate(`/product/${id}`)
   }
 
   return (
     <Container>
-      <Image src={item.image} />
+      <Image src={item.images[0]} />
       <Info>
-        <Icon>
+        <Icon
+        // onClick={handleAddToCartClick(item.id)}
+        >
           <AddShoppingCartOutlinedIcon />
         </Icon>
-        <Icon onClick={handleClick(item.id)}>
+        <Icon onClick={handleOverviewClick(item.id)}>
           <SearchOutlinedIcon />
         </Icon>
         <Icon>

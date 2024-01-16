@@ -1,3 +1,4 @@
+import { Provider } from 'react-redux'
 import { Suspense, lazy } from 'react'
 import {
   Route,
@@ -8,25 +9,28 @@ import {
   Navigate
 } from 'react-router-dom'
 import './App.css'
-import Spinner from './components/Spinner'
+
+import FullPageSpinner from './components/FullPageSpinner'
+import store from './store/store'
 
 const Layout = lazy(() => import('./components/Layout'))
-const Home = lazy(() => import('./pages/Home'))
-const Cart = lazy(() => import('./pages/Cart'))
-const Product = lazy(() => import('./pages/Product'))
+const Home = lazy(() => import('./pages/HomePage'))
+const Cart = lazy(() => import('./pages/CartPage'))
+const Product = lazy(() => import('./pages/ProductPage'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
       path='/*'
       element={
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<FullPageSpinner />}>
           <Layout>
             <Outlet />
           </Layout>
         </Suspense>
       }>
       <Route index element={<Navigate replace to='home' />} />
+
       <Route path='home' element={<Home />} />
       <Route path='cart' element={<Cart />} />
       <Route path='product/:id' element={<Product />} />
@@ -35,7 +39,11 @@ const router = createBrowserRouter(
 )
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  )
 }
 
 export default App
