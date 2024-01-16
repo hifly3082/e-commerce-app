@@ -1,13 +1,9 @@
 import styled from 'styled-components'
-import { useGetCategoriesQuery } from '../features/api/storeApi'
-import SmallSpinner from './Spinner'
-import CategoryItem from './CategoryItem'
 
-export interface ICategory {
-  id: number
-  name: string
-  image: string
-}
+import { ICategory } from '../types/types'
+import { useGetCategoriesQuery } from '../features/api/storeApi'
+import CategoryItem from './CategoryItem'
+import SmallSpinner from './Spinner'
 
 const Container = styled.div`
   display: flex;
