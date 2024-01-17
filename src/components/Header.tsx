@@ -73,7 +73,6 @@ const Header = () => {
           </Logo>
         </LogoContainer>
         <MenuContainer>
-          <MenuItem>register</MenuItem>
           <MenuItem>sign in</MenuItem>
           <MenuItem>
             <Link to='cart'>
