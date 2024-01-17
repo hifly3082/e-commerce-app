@@ -75,6 +75,7 @@ const Button = styled.button`
 const Checkout = styled(Button)`
   background-color: teal;
   color: #fff;
+  margin-top: 1rem;
 `
 
 const Total = styled.div`
@@ -82,7 +83,7 @@ const Total = styled.div`
   font-size: 1rem;
   font-weight: 600;
   color: #666;
-  margin: 2rem 1rem 1rem;
+  margin: 0.6rem 0;
 `
 
 const CartPage: React.FC = () => {
@@ -90,9 +91,10 @@ const CartPage: React.FC = () => {
   const dispatch = useDispatch()
   const cartState = useSelector((state: IRootState) => state.cart)
   const cartQuantity = cartState.items.length
+  const shippingFee = 25
   const totalSum = cartState.items.reduce(
     (sum: number, item) => sum + item.price * item.quantity,
-    0
+    shippingFee
   )
 
   const handleClearCart = () => {
@@ -141,6 +143,7 @@ const CartPage: React.FC = () => {
         </ItemContainer>
       ))}
       <hr />
+      <Total>Shipping fee: ${shippingFee}</Total>
       <Total>Total Sum: ${totalSum}</Total>
       <Checkout>Proceed to checkout</Checkout>
     </Container>
