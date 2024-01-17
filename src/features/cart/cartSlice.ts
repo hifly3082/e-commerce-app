@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
         (item: ICartItem) => item.id === action.payload.id
       )
       if (existingItem) {
-        existingItem.quantity += 1
+        existingItem.quantity += action.payload.quantity
       } else {
         state.items.push(action.payload)
       }
