@@ -30,21 +30,22 @@ const ProductList = styled.div`
 const Products: React.FC = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery({})
 
-  if (isLoading) return <SmallSpinner />
-
-  if (isError || !products) {
+  if (isError) {
     return <div>Something went wrong</div>
   }
 
   return (
     <Container>
       <Title>Products</Title>
-
-      <ProductList>
-        {products.map((item: IProductItem) => (
-          <ProductItem item={item} key={item.id} />
-        ))}
-      </ProductList>
+      {isLoading ? (
+        <SmallSpinner />
+      ) : (
+        <ProductList>
+          {products.slice(2, 11).map((item: IProductItem) => (
+            <ProductItem item={item} key={item.id} />
+          ))}
+        </ProductList>
+      )}
     </Container>
   )
 }
