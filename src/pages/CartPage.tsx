@@ -35,28 +35,29 @@ const ItemImage = styled.img`
   cursor: pointer;
 `
 
-const Quantity = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-`
-
 const ItemName = styled.h3`
   font-size: 1.2rem;
   font-weight: 500;
+  margin-left: 1rem;
+`
+
+const Quantity = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const ItemPrice = styled.p`
   font-size: 1rem;
   font-weight: 600;
   color: #666;
+  margin: 0 3rem;
 `
 
 const ItemQuantity = styled.p`
   font-size: 1rem;
   font-weight: 400;
   color: #444;
-  margin-right: 10px;
+  margin: 0 1rem;
 `
 
 const Button = styled.button`
@@ -64,7 +65,7 @@ const Button = styled.button`
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
-  margin-right: 5px;
+
   cursor: pointer;
   transition: all 0.4s ease-in-out;
   &:hover {
@@ -106,7 +107,7 @@ const CartPage: React.FC = () => {
   }
 
   const handleOverview = (id: number) => () => {
-    navigate(`/product/${id}`)
+    navigate(`/products/${id}`)
   }
 
   const handleIncrementQuantity = (item: ICartItem) => () => {
@@ -137,14 +138,15 @@ const CartPage: React.FC = () => {
             <ItemQuantity>{item.quantity}</ItemQuantity>
             <Button onClick={handleIncrementQuantity(item)}>+</Button>
           </Quantity>
+
           <ItemPrice>${item.price * item.quantity}</ItemPrice>
 
           <Button onClick={handleRemoveItem(item)}>Remove</Button>
         </ItemContainer>
       ))}
       <hr />
-      <Total>Shipping fee: ${shippingFee}</Total>
-      <Total>Total Sum: ${totalSum}</Total>
+      <Total>Shipping fee: $ {shippingFee}</Total>
+      <Total>Total Sum: $ {totalSum}</Total>
       <Checkout>Proceed to checkout</Checkout>
     </Container>
   ) : (
