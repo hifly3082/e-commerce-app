@@ -14,12 +14,6 @@ const Container = styled.div`
   max-width: 1200px;
 `
 
-const Title = styled.h2`
-  margin: 3rem 0;
-  font-size: 2rem;
-  font-weight: 600;
-`
-
 const CategoryList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -29,20 +23,21 @@ const CategoryList = styled.div`
 const Categories = () => {
   const { data: categories, isLoading, isError } = useGetCategoriesQuery({})
 
-  if (isLoading) return <SmallSpinner />
-
-  if (isError || !categories) {
+  if (isError) {
     return <div>Something went wrong</div>
   }
 
   return (
     <Container>
-      <Title>Categories</Title>
-      <CategoryList>
-        {categories.slice(0, 5).map((item: ICategory) => (
-          <CategoryItem item={item} key={item.id} />
-        ))}
-      </CategoryList>
+      {isLoading ? (
+        <SmallSpinner />
+      ) : (
+        <CategoryList>
+          {categories.slice(0, 5).map((item: ICategory) => (
+            <CategoryItem item={item} key={item.id} />
+          ))}
+        </CategoryList>
+      )}
     </Container>
   )
 }

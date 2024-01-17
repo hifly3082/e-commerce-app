@@ -1,8 +1,10 @@
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined'
-import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { css } from '@emotion/react'
+import styled from 'styled-components'
+
+import { IRootState } from '../types/types'
+import Cart from './Cart'
+import Switcher from './Switcher'
 
 const HeaderContainer = styled.div`
   height: 4rem;
@@ -15,7 +17,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `
 
-const SearchContainer = styled.div`
+const ModeContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -26,18 +28,6 @@ const Language = styled.span`
   cursor: pointer;
 `
 
-const SearchBar = styled.div`
-  border: 1px solid gray;
-  display: flex;
-  align-items: center;
-  margin-left: 1.5rem;
-  padding: 0.4rem;
-`
-
-const Input = styled.input`
-  border: none;
-`
-
 const LogoContainer = styled.div`
   flex: 1;
   text-align: center;
@@ -46,7 +36,6 @@ const LogoContainer = styled.div`
 const Logo = styled.h1`
   font-weight: 700;
   user-select: none;
-  text-decoration: none;
 `
 
 const MenuContainer = styled.div`
@@ -62,17 +51,18 @@ const MenuItem = styled.div`
   margin-left: 1.6rem;
   cursor: pointer;
 `
+
 const Header = () => {
+  const cartState = useSelector((state: IRootState) => state.cart)
+  const cartQuantity = cartState.items.length
+
   return (
     <HeaderContainer>
       <Wrapper>
-        <SearchContainer>
+        <ModeContainer>
+          <Switcher />
           <Language>EN</Language>
-          <SearchBar>
-            <Input placeholder='Find products' />
-            <SearchOutlinedIcon />
-          </SearchBar>
-        </SearchContainer>
+        </ModeContainer>
         <LogoContainer>
           <Logo>
             <Link
@@ -83,11 +73,10 @@ const Header = () => {
           </Logo>
         </LogoContainer>
         <MenuContainer>
-          <MenuItem>register</MenuItem>
           <MenuItem>sign in</MenuItem>
           <MenuItem>
             <Link to='cart'>
-              <AddShoppingCartOutlinedIcon />
+              <Cart cartQuantity={cartQuantity} />
             </Link>
           </MenuItem>
         </MenuContainer>

@@ -67,7 +67,7 @@ const ProductItem = ({ item }: { item: IProductItem }) => {
   const dispatch = useDispatch()
 
   const handleOverview = (id: number) => () => {
-    navigate(`/product/${id}`)
+    navigate(`/products/${id}`)
   }
 
   const handleAddItem = (item: IProductItem) => () => {

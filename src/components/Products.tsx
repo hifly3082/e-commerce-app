@@ -14,13 +14,6 @@ const Container = styled.div`
   max-width: 1200px;
 `
 
-const Title = styled.h2`
-  margin: 2rem auto 1rem;
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
-`
-
 const ProductList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -30,21 +23,21 @@ const ProductList = styled.div`
 const Products: React.FC = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery({})
 
-  if (isLoading) return <SmallSpinner />
-
-  if (isError || !products) {
+  if (isError) {
     return <div>Something went wrong</div>
   }
 
   return (
     <Container>
-      <Title>Products</Title>
-
-      <ProductList>
-        {products.map((item: IProductItem) => (
-          <ProductItem item={item} key={item.id} />
-        ))}
-      </ProductList>
+      {isLoading ? (
+        <SmallSpinner />
+      ) : (
+        <ProductList>
+          {products.slice(2, 10).map((item: IProductItem) => (
+            <ProductItem item={item} key={item.id} />
+          ))}
+        </ProductList>
+      )}
     </Container>
   )
 }
