@@ -14,13 +14,6 @@ const Container = styled.div`
   max-width: 1200px;
 `
 
-const Title = styled.h2`
-  margin: 2rem auto 1rem;
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
-`
-
 const ProductList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -36,12 +29,11 @@ const Products: React.FC = () => {
 
   return (
     <Container>
-      <Title>Products</Title>
       {isLoading ? (
         <SmallSpinner />
       ) : (
         <ProductList>
-          {products.slice(2, 11).map((item: IProductItem) => (
+          {products.slice(2, 10).map((item: IProductItem) => (
             <ProductItem item={item} key={item.id} />
           ))}
         </ProductList>
