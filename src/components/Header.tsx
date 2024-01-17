@@ -1,10 +1,10 @@
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
-
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import Cart from './Cart'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
 import { IRootState } from '../types/types'
+import Cart from './Cart'
+import Switcher from './Switcher'
 
 const HeaderContainer = styled.div`
   height: 4rem;
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `
 
-const SearchContainer = styled.div`
+const ModeContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -26,18 +26,6 @@ const SearchContainer = styled.div`
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-`
-
-const SearchBar = styled.div`
-  border: 1px solid gray;
-  display: flex;
-  align-items: center;
-  margin-left: 1.5rem;
-  padding: 0.4rem;
-`
-
-const Input = styled.input`
-  border: none;
 `
 
 const LogoContainer = styled.div`
@@ -71,13 +59,10 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Wrapper>
-        <SearchContainer>
+        <ModeContainer>
+          <Switcher />
           <Language>EN</Language>
-          <SearchBar>
-            <Input placeholder='Find products' />
-            <SearchOutlinedIcon />
-          </SearchBar>
-        </SearchContainer>
+        </ModeContainer>
         <LogoContainer>
           <Logo>
             <Link
