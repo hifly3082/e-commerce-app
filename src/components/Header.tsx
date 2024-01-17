@@ -1,8 +1,10 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined'
+
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { css } from '@emotion/react'
+import Cart from './Cart'
+import { useSelector } from 'react-redux'
+import { IRootState } from '../types/types'
 
 const HeaderContainer = styled.div`
   height: 4rem;
@@ -46,7 +48,6 @@ const LogoContainer = styled.div`
 const Logo = styled.h1`
   font-weight: 700;
   user-select: none;
-  text-decoration: none;
 `
 
 const MenuContainer = styled.div`
@@ -62,7 +63,11 @@ const MenuItem = styled.div`
   margin-left: 1.6rem;
   cursor: pointer;
 `
+
 const Header = () => {
+  const cartState = useSelector((state: IRootState) => state.cart)
+  const cartQuantity = cartState.items.length
+
   return (
     <HeaderContainer>
       <Wrapper>
@@ -87,7 +92,7 @@ const Header = () => {
           <MenuItem>sign in</MenuItem>
           <MenuItem>
             <Link to='cart'>
-              <AddShoppingCartOutlinedIcon />
+              <Cart cartQuantity={cartQuantity} />
             </Link>
           </MenuItem>
         </MenuContainer>
