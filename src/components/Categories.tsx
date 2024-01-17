@@ -14,12 +14,6 @@ const Container = styled.div`
   max-width: 1200px;
 `
 
-const Title = styled.h2`
-  margin: 3rem 0;
-  font-size: 2rem;
-  font-weight: 600;
-`
-
 const CategoryList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -35,7 +29,6 @@ const Categories = () => {
 
   return (
     <Container>
-      <Title>Categories</Title>
       {isLoading ? (
         <SmallSpinner />
       ) : (
