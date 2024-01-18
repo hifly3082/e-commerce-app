@@ -13,7 +13,7 @@ const CartQuantityContainer = styled.div`
 `
 
 const CartQuantity = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   border-radius: 50%;
   color: #000;
   width: 1rem;
@@ -29,14 +29,12 @@ const CartQuantity = styled.div`
 const Cart = ({ cartQuantity }: { cartQuantity: number }) => {
   return (
     <>
-      {cartQuantity > 0 && (
-        <CartButton>
-          <ShoppingCartOutlinedIcon />
-          <CartQuantityContainer>
-            <CartQuantity>{cartQuantity}</CartQuantity>
-          </CartQuantityContainer>
-        </CartButton>
-      )}
+      <CartButton>
+        <ShoppingCartOutlinedIcon />
+        <CartQuantityContainer>
+          {cartQuantity > 0 && <CartQuantity>{cartQuantity}</CartQuantity>}
+        </CartQuantityContainer>
+      </CartButton>
     </>
   )
 }
