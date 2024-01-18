@@ -4,12 +4,13 @@ import styled from 'styled-components'
 
 import { ICartItem, IRootState } from '../types/types'
 import { cartSlice } from '../features/cart/cartSlice'
+import { NavLink } from 'react-router-dom'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 `
 
@@ -21,10 +22,10 @@ const Header = styled.div`
 `
 
 const ItemContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 22rem repeat(2, minmax(100px, 1fr)) 100px;
   align-items: center;
-  margin-bottom: 10px;
-  justify-content: space-between;
+  margin-bottom: 0.8rem;
 `
 
 const ItemImage = styled.img`
@@ -44,6 +45,7 @@ const ItemName = styled.h3`
 const Quantity = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-around;
 `
 
 const ItemPrice = styled.p`
@@ -77,6 +79,11 @@ const Checkout = styled(Button)`
   background-color: teal;
   color: #fff;
   margin-top: 1rem;
+`
+
+const Return = styled(NavLink)`
+  text-decoration: none;
+  color: #000;
 `
 
 const Total = styled.div`
@@ -118,11 +125,13 @@ const CartPage: React.FC = () => {
     dispatch(cartSlice.actions.decrementQuantity(item))
   }
 
-  return cartQuantity > 0 ? (
+  return (
     <Container>
       <Header>
-        <h2>Cart</h2>
-        <Button onClick={handleClearCart}>Clear Cart</Button>
+        <h2>Cart {cartQuantity > 0 ? '' : 'is empty'}</h2>
+        {cartQuantity > 0 && (
+          <Button onClick={handleClearCart}>Clear Cart</Button>
+        )}
       </Header>
       {cartState.items.map((item) => (
         <ItemContainer key={item.id}>
@@ -131,29 +140,26 @@ const CartPage: React.FC = () => {
             alt={item.title}
             onClick={handleOverview(item.id)}
           />
-
           <ItemName>{item.title}</ItemName>
           <Quantity>
             <Button onClick={handleDecrementQuantity(item)}>-</Button>
             <ItemQuantity>{item.quantity}</ItemQuantity>
             <Button onClick={handleIncrementQuantity(item)}>+</Button>
           </Quantity>
-
           <ItemPrice>${item.price * item.quantity}</ItemPrice>
-
           <Button onClick={handleRemoveItem(item)}>Remove</Button>
         </ItemContainer>
       ))}
       <hr />
-      <Total>Shipping fee: $ {shippingFee}</Total>
-      <Total>Total Sum: $ {totalSum}</Total>
-      <Checkout>Proceed to checkout</Checkout>
-    </Container>
-  ) : (
-    <Container>
-      <Header>
-        <h2>Cart is empty </h2>
-      </Header>
+      <Total>Shipping fee: $ {cartQuantity > 0 ? shippingFee : 0}</Total>
+      <Total>Total Sum: $ {cartQuantity > 0 ? totalSum : 0}</Total>
+      {cartQuantity > 0 ? (
+        <Checkout>Proceed to checkout</Checkout>
+      ) : (
+        <Button>
+          <Return to='/home'>Return to shopping</Return>
+        </Button>
+      )}
     </Container>
   )
 }
