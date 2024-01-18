@@ -1,42 +1,75 @@
+gitimport { useState } from 'react'
 import styled from 'styled-components'
-import Products from '../components/Products'
+
+import { IProductItem } from '../types/types'
+import { useGetProductsQuery } from '../features/api/storeApi'
+import { useThrottle } from '../hooks/useThrottle'
+import ProductItem from '../components/ProductItem'
+import SmallSpinner from '../components/Spinner'
+import Search from '../components/Search'
 import Filters from '../components/Filters'
+import { useParams } from 'react-router-dom'
 
 const PageContainer = styled.div`
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+`
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 
-const FiltersColumn = styled.div`
-  width: 15vw;
-  padding: 1rem;
+const Products = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `
 
-const ProductsColumn = styled.div`
-  width: 85vw;
+const NotFound = styled.p`
   padding: 1rem;
-`
-const Title = styled.h2`
-  margin: 2rem auto 1rem;
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
 `
 
 const ProductsPage: React.FC = () => {
+  const { categoryId } = useParams()
+  const [query, setQuery] = useState('')
+  const throttledQuery = useThrottle(query)
+  const {
+    data: products,
+    isLoading,
+    isError
+  } = useGetProductsQuery(throttledQuery)
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value)
+  }
+
+  const handleInputClear = () => setQuery('')
+
   return (
-    <>
-      <Title>Products</Title>
-      <PageContainer>
-        <FiltersColumn>
-          <Filters />
-        </FiltersColumn>
-        <ProductsColumn>
-          <Products />
-        </ProductsColumn>
-      </PageContainer>
-    </>
+    <PageContainer>
+      <Search
+        query={query}
+        onChange={handleInputChange}
+        onClear={handleInputClear}
+      />
+      <Container>
+        <Filters />
+        {products?.length > 0 ? (
+          <Products>
+            {isLoading && <SmallSpinner />}
+            {isError && <p>Error fetching data</p>}
+            {products?.map((item: IProductItem) => (
+              <ProductItem key={item.id} item={item} />
+            ))}
+          </Products>
+        ) : (
+          <NotFound>Products not found</NotFound>
+        )}
+      </Container>
+    </PageContainer>
   )
 }
 
