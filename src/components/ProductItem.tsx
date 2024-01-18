@@ -15,7 +15,7 @@ const Info = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.1);
   opacity: 0;
   z-index: 3;
   justify-content: center;
@@ -78,11 +78,11 @@ const ProductItem = ({ item }: { item: IProductItem }) => {
     <Container>
       <Image src={item.images[0]} />
       <Info>
-        <Icon onClick={handleAddItem(item)}>
-          <AddShoppingCartOutlinedIcon />
-        </Icon>
         <Icon onClick={handleOverview(item.id)}>
           <SearchOutlinedIcon />
+        </Icon>
+        <Icon onClick={handleAddItem(item)}>
+          <AddShoppingCartOutlinedIcon />
         </Icon>
         <Icon>
           <FavoriteBorderOutlinedIcon />
