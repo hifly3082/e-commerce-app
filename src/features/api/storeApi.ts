@@ -10,11 +10,23 @@ export const storeApi = createApi({
       query: () => `/categories`
     }),
     getProducts: builder.query({
-      query: () => `/products`
+      query: (
+        searchQuery?: string,
+        categoryId?: number,
+        priceMin?: number,
+        priceMax?: number
+      ) =>
+        `/products/?title=${searchQuery}&price_min=${priceMin}&price_max=${priceMax}&categoryId=${categoryId}`
     }),
     getProduct: builder.query({
       query: (id) => `/products/${id}`
     })
+    // getProductByTitle: builder.query({
+    //   query: (query) => `/products/?title=${query}`
+    // }),
+    // getProductByCategory: builder.query({
+    //   query: (id) => `/products/?categoryId=${id}`
+    // })
   })
 })
 
@@ -22,4 +34,6 @@ export const {
   useGetCategoriesQuery,
   useGetProductsQuery,
   useGetProductQuery
+  // useGetProductByTitleQuery,
+  // useGetProductByCategoryQuery
 } = storeApi

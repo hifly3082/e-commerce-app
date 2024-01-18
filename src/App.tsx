@@ -34,8 +34,20 @@ const router = createBrowserRouter(
 
       <Route path='home' element={<HomePage />} />
       <Route path='cart' element={<CartPage />} />
-      <Route path='products' element={<ProductsPage />} />
-      <Route path='products/:id' element={<ProductPage />} />
+      {/* <Route path='products/*'>
+        <Route path=':categoryId'>
+          <Route index element={<ProductsPage />} />
+          <Route path=':productId'>
+            <Route index element={<ProductPage />} />
+          </Route>
+        </Route>
+      </Route> */}
+      <Route path='products/*'>
+        <Route index element={<ProductsPage />} />
+        <Route path=':productId'>
+          <Route index element={<ProductPage />} />
+        </Route>
+      </Route>
     </Route>
   )
 )

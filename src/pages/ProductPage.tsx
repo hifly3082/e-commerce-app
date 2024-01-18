@@ -112,10 +112,10 @@ const AddButton = styled(Button)`
 const Product: React.FC = () => {
   const [amount, setAmount] = useState(1)
   const [index, setIndex] = useState(0)
-  const { id } = useParams()
+  const { productId } = useParams()
   const dispatch = useDispatch()
 
-  const { data: product, isLoading, isError } = useGetProductQuery(id)
+  const { data: product, isLoading, isError } = useGetProductQuery(productId)
 
   const nextIndex = () => {
     setIndex(index === product.images.length - 1 ? 0 : index + 1)
