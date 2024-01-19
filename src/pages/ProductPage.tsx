@@ -5,7 +5,7 @@ import { BsArrowLeftCircleFill } from 'react-icons/bs'
 import styled from 'styled-components'
 
 import SmallSpinner from '../components/Spinner'
-import { useGetProductQuery } from '../features/api/storeApi'
+import { useGetProductByIdQuery } from '../features/api/storeApi'
 import { addItemToCart } from '../features/cart/cartSlice'
 import { IProductItem } from '../types/types'
 
@@ -115,7 +115,11 @@ const Product: React.FC = () => {
   const { productId } = useParams()
   const dispatch = useDispatch()
 
-  const { data: product, isLoading, isError } = useGetProductQuery(productId)
+  const {
+    data: product,
+    isLoading,
+    isError
+  } = useGetProductByIdQuery(productId)
 
   const nextIndex = () => {
     setIndex(index === product.images.length - 1 ? 0 : index + 1)
