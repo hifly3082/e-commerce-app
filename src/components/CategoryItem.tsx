@@ -58,7 +58,7 @@ const ShopNowButton = styled.button`
 const CategoryItem = ({ item }: { item: ICategory }) => {
   const navigate = useNavigate()
   const handleClick = (id: number) => () => {
-    navigate(`/products`)
+    navigate(`/products`, { state: { categoryId: id } })
   }
 
   return (
