@@ -10,30 +10,25 @@ export const storeApi = createApi({
       query: () => `/categories`
     }),
     getProducts: builder.query({
-      query: (
-        searchQuery?: string,
-        categoryId?: number,
-        priceMin?: number,
-        priceMax?: number
-      ) =>
-        `/products/?title=${searchQuery}&price_min=${priceMin}&price_max=${priceMax}&categoryId=${categoryId}`
+      query: ({ title, priceMin, priceMax, categoryId }) => {
+        let queryString = '/products/?'
+
+        if (title) queryString += `&title=${title}`
+        if (priceMin) queryString += `&price_min=${priceMin}`
+        if (priceMax) queryString += `&price_max=${priceMax}`
+        if (categoryId) queryString += `&categoryId=${categoryId}`
+
+        return queryString
+      }
     }),
-    getProduct: builder.query({
+    getProductById: builder.query({
       query: (id) => `/products/${id}`
     })
-    // getProductByTitle: builder.query({
-    //   query: (query) => `/products/?title=${query}`
-    // }),
-    // getProductByCategory: builder.query({
-    //   query: (id) => `/products/?categoryId=${id}`
-    // })
   })
 })
 
 export const {
   useGetCategoriesQuery,
   useGetProductsQuery,
-  useGetProductQuery
-  // useGetProductByTitleQuery,
-  // useGetProductByCategoryQuery
+  useGetProductByIdQuery
 } = storeApi

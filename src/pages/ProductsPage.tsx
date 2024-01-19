@@ -1,14 +1,10 @@
-gitimport { useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 
-import { IProductItem } from '../types/types'
-import { useGetProductsQuery } from '../features/api/storeApi'
-import { useThrottle } from '../hooks/useThrottle'
-import ProductItem from '../components/ProductItem'
-import SmallSpinner from '../components/Spinner'
 import Search from '../components/Search'
 import Filters from '../components/Filters'
-import { useParams } from 'react-router-dom'
+import ProductsList from './ProductsList'
+import { useLocation } from 'react-router-dom'
 
 const PageContainer = styled.div`
   display: flex;
@@ -20,54 +16,40 @@ const PageContainer = styled.div`
 `
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
-`
-
-const Products = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-`
-
-const NotFound = styled.p`
-  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
 `
 
 const ProductsPage: React.FC = () => {
-  const { categoryId } = useParams()
-  const [query, setQuery] = useState('')
-  const throttledQuery = useThrottle(query)
-  const {
-    data: products,
-    isLoading,
-    isError
-  } = useGetProductsQuery(throttledQuery)
+  const location = useLocation()
+  const categoryId = location.state?.categoryId || ''
+  const [searchParams, setSearchParams] = useState({
+    title: ''
+  })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value)
+  const [filterParams, setFilterParams] = useState({
+    priceMin: '',
+    priceMax: '',
+    categoryId: ''
+  })
+
+  const handleSearchChange = (newSearchParams: any) => {
+    setSearchParams(newSearchParams)
   }
 
-  const handleInputClear = () => setQuery('')
+  const handleFiltersChange = (newFilterParams: any) => {
+    setFilterParams(newFilterParams)
+  }
 
   return (
     <PageContainer>
-      <Search
-        query={query}
-        onChange={handleInputChange}
-        onClear={handleInputClear}
-      />
+      <Search onSearchChange={handleSearchChange} />
       <Container>
-        <Filters />
-        {products?.length > 0 ? (
-          <Products>
-            {isLoading && <SmallSpinner />}
-            {isError && <p>Error fetching data</p>}
-            {products?.map((item: IProductItem) => (
-              <ProductItem key={item.id} item={item} />
-            ))}
-          </Products>
-        ) : (
-          <NotFound>Products not found</NotFound>
-        )}
+        <Filters
+          defaultCategoryId={categoryId}
+          onFiltersChange={handleFiltersChange}
+        />
+        <ProductsList searchParams={searchParams} filterParams={filterParams} />
       </Container>
     </PageContainer>
   )

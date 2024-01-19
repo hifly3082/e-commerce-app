@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import { CloseOutlined, SearchOutlined } from '@mui/icons-material'
+import { useState } from 'react'
 
 interface ISearchProps {
-  query: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onClear: () => void
+  onSearchChange: (searchParams: any) => void
 }
 
 const SearchContainer = styled.div`
@@ -32,7 +31,20 @@ const Input = styled.input`
   flex: 1;
 `
 
-const Search: React.FC<ISearchProps> = ({ query, onChange, onClear }) => {
+const Search: React.FC<ISearchProps> = ({ onSearchChange }) => {
+  const [query, setQuery] = useState('')
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value
+    setQuery(newQuery)
+    onSearchChange({ title: newQuery })
+  }
+
+  const handleClear = () => {
+    setQuery('')
+    onSearchChange({ title: '' })
+  }
+
   return (
     <SearchContainer>
       <SearchBar>
@@ -40,11 +52,14 @@ const Search: React.FC<ISearchProps> = ({ query, onChange, onClear }) => {
           type='text'
           placeholder='Find products'
           value={query}
-          onChange={(query) => onChange(query)}
+          onChange={handleChange}
         />
         {query ? (
           <span>
-            <CloseOutlined style={{ cursor: 'pointer' }} onClick={onClear} />
+            <CloseOutlined
+              style={{ cursor: 'pointer' }}
+              onClick={handleClear}
+            />
           </span>
         ) : (
           <SearchOutlined />

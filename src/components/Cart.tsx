@@ -13,7 +13,7 @@ const CartQuantityContainer = styled.div`
 `
 
 const CartQuantity = styled.div`
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   border-radius: 50%;
   color: #000;
   width: 1rem;

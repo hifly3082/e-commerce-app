@@ -3,7 +3,7 @@ import { RiSunFill, RiMoonFill } from 'react-icons/ri'
 import styled from 'styled-components'
 
 interface ToggleIconProps {
-  isDarkMode: boolean
+  isdarkmode: boolean
 }
 
 const SwitcherWrapper = styled.div`
@@ -15,8 +15,8 @@ const SwitcherWrapper = styled.div`
 
 const ToggleIcon = styled.div<ToggleIconProps>`
   font-size: 1.2rem;
-  color: ${(props) => (props.isDarkMode ? '#eee' : '#333')};
-  background-color: ${(props) => (props.isDarkMode ? '#333' : '#eee')};
+  color: ${(props) => (props.isdarkmode ? '#eee' : '#333')};
+  background-color: ${(props) => (props.isdarkmode ? '#333' : '#eee')};
   border-radius: 50%;
   transition: all 0.4s ease-in-out;
   padding: 0.4rem;
@@ -34,7 +34,7 @@ const Switcher: React.FC = () => {
 
   return (
     <SwitcherWrapper onClick={toggleMode}>
-      <ToggleIcon isDarkMode={isDarkMode}>
+      <ToggleIcon isdarkmode={isDarkMode}>
         {isDarkMode ? <RiMoonFill /> : <RiSunFill />}
       </ToggleIcon>
     </SwitcherWrapper>
