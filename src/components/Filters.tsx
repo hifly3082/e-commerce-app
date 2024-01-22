@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useGetCategoriesQuery } from '../features/api/storeApi'
 import { ICategory } from '../types/types'
+import { useThrottle } from '../hooks/useThrottle'
 
-interface IFilterProps {
-  onFiltersChange: (filters: any) => void
-  defaultCategoryId?: number
+interface FilterProps {
+  setSearchParams: (searchParams: Record<string, string>) => void
 }
 
 const FiltersContainer = styled.div`
@@ -37,22 +37,33 @@ const Select = styled.select`
 
 const Option = styled.option``
 
-const Filters: React.FC<IFilterProps> = ({
-  onFiltersChange,
-  defaultCategoryId
-}) => {
+const Filters: React.FC<FilterProps> = ({ setSearchParams }) => {
   const [priceMin, setPriceMin] = useState('10')
   const [priceMax, setPriceMax] = useState('100')
-  const [categoryId, setCategoryId] = useState(defaultCategoryId || '')
+  const [categoryId, setCategoryId] = useState('')
   const { data: categories } = useGetCategoriesQuery({})
 
-  const handleFiltersChange = () => {
-    onFiltersChange({ priceMin, priceMax, categoryId })
-  }
+  const throttledPriceMin = useThrottle(priceMin)
+  const throttledPriceMax = useThrottle(priceMax)
+  const throttledCategoryId = useThrottle(categoryId)
+
+  // const handleFiltersChange = () => {
+  //   setSearchParams({
+  //     priceMin: throttledPriceMin,
+  //     priceMax: throttledPriceMax,
+  //     categoryId: throttledCategoryId
+  //   })
+  //   console.log(`Filters component`)
+  // }
 
   useEffect(() => {
-    handleFiltersChange()
-  }, [priceMin, priceMax, categoryId])
+    setSearchParams({
+      priceMin: throttledPriceMin,
+      priceMax: throttledPriceMax,
+      categoryId: throttledCategoryId
+    })
+    console.log(`Filters component`)
+  }, [throttledPriceMin, throttledPriceMax, throttledCategoryId])
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -68,7 +79,7 @@ const Filters: React.FC<IFilterProps> = ({
         setPriceMax(value)
       }
     }
-    handleFiltersChange()
+    // handleFiltersChange()
   }
 
   return (
