@@ -22,3 +22,10 @@ export interface IRootState {
     items: ICartItem[]
   }
 }
+
+export interface SearchParams {
+  title?: string
+  priceMin?: string
+  priceMax?: string
+  categoryId?: string
+}
