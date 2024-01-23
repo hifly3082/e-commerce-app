@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import Search from '../components/Search'
 import Filters from '../components/Filters'
 import ProductsList from './ProductsList'
-import { useLocation, useSearchParams } from 'react-router-dom'
+
 import { useGetProductsQuery } from '../features/api/storeApi'
 import { useThrottle } from '../hooks/useThrottle'
+import { useSearchParams } from '../hooks/useSearchParams'
+import { useLocation } from 'react-router-dom'
 
 const PageContainer = styled.div`
   display: flex;
@@ -23,18 +24,18 @@ const Container = styled.div`
 `
 
 const ProductsPage: React.FC = () => {
-  const location = useLocation()
-  // const categoryId = location.state?.categoryId || ''
-  const [searchParams, setSearchParams] = useSearchParams()
+  const { searchParams } = useSearchParams()
 
   const title = searchParams.get('title') || ''
+  const categoryId = searchParams.get('categoryId') || ''
   const priceMin = useThrottle(searchParams.get('priceMin') || '')
   const priceMax = useThrottle(searchParams.get('priceMax') || '')
-  const categoryId = searchParams.get('categoryId') || ''
+
   const {
     data: products,
     isLoading,
-    isError
+    isError,
+    isFetching
   } = useGetProductsQuery({
     title,
     price_min: priceMin,
@@ -44,16 +45,12 @@ const ProductsPage: React.FC = () => {
 
   return (
     <PageContainer>
-      <Search setSearchParams={setSearchParams} />
+      <Search />
       <Container>
-        <Filters
-          // defaultCategoryId={categoryId}
-          setSearchParams={setSearchParams}
-        />
+        <Filters />
         <ProductsList
-          // searchParams={searchParams}
           products={products}
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
           isError={isError}
         />
       </Container>
