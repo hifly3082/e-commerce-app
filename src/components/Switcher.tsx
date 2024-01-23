@@ -1,10 +1,6 @@
-import { useState } from 'react'
 import { RiSunFill, RiMoonFill } from 'react-icons/ri'
 import styled from 'styled-components'
-
-interface ToggleIconProps {
-  isdarkmode: boolean
-}
+import { useDarkMode } from '../context/DarkModeContext'
 
 const SwitcherWrapper = styled.div`
   display: flex;
@@ -13,10 +9,10 @@ const SwitcherWrapper = styled.div`
   cursor: pointer;
 `
 
-const ToggleIcon = styled.div<ToggleIconProps>`
+const ToggleIcon = styled.div`
   font-size: 1.2rem;
-  color: ${(props) => (props.isdarkmode ? '#eee' : '#333')};
-  background-color: ${(props) => (props.isdarkmode ? '#333' : '#eee')};
+  color: #333;
+  background-color: #eee;
   border-radius: 50%;
   transition: all 0.4s ease-in-out;
   padding: 0.4rem;
@@ -26,16 +22,12 @@ const ToggleIcon = styled.div<ToggleIconProps>`
 `
 
 const Switcher: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
-  const toggleMode = () => {
-    setIsDarkMode((prevMode) => !prevMode)
-  }
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
 
   return (
-    <SwitcherWrapper onClick={toggleMode}>
-      <ToggleIcon isdarkmode={isDarkMode}>
-        {isDarkMode ? <RiMoonFill /> : <RiSunFill />}
+    <SwitcherWrapper>
+      <ToggleIcon onClick={toggleDarkMode}>
+        {isDarkMode ? <RiSunFill /> : <RiMoonFill />}
       </ToggleIcon>
     </SwitcherWrapper>
   )

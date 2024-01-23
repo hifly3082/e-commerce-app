@@ -2,13 +2,11 @@ import styled from 'styled-components'
 import ProductItem from '../components/ProductItem'
 import { IProductItem } from '../types/types'
 import SmallSpinner from '../components/Spinner'
-import { useGetProductsQuery } from '../features/api/storeApi'
 
 interface ProductsListProps {
   products: IProductItem[]
   isLoading: boolean
   isError: boolean
-  // searchParams: any
 }
 
 const Products = styled.div`
@@ -24,21 +22,15 @@ const ProductsList: React.FC<ProductsListProps> = ({
   products,
   isLoading,
   isError
-  // searchParams
 }) => {
-  // const {
-  //   data: products,
-  //   isLoading,
-  //   isError,
-  //   refetch
-  // } = useGetProductsQuery(searchParams)
-
-  if (products?.length < 1) return <NotFound>Products not found</NotFound>
-
-  return (
+  return isLoading ? (
+    <SmallSpinner />
+  ) : isError ? (
+    <NotFound>Error fetching data</NotFound>
+  ) : products?.length < 1 ? (
+    <NotFound>Products not found</NotFound>
+  ) : (
     <Products>
-      {isLoading && <SmallSpinner />}
-      {isError && <p>Error fetching data</p>}
       {products?.map((item: IProductItem) => (
         <ProductItem key={item.id} item={item} />
       ))}

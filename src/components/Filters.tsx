@@ -5,10 +5,11 @@ import styled from 'styled-components'
 import { useGetCategoriesQuery } from '../features/api/storeApi'
 import { ICategory } from '../types/types'
 import { useThrottle } from '../hooks/useThrottle'
+import { useSearchParams } from '../hooks/useSearchParams'
 
-interface FilterProps {
-  setSearchParams: (searchParams: Record<string, string>) => void
-}
+// interface FilterProps {
+//   categoryId: string
+// }
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -37,33 +38,31 @@ const Select = styled.select`
 
 const Option = styled.option``
 
-const Filters: React.FC<FilterProps> = ({ setSearchParams }) => {
-  const [priceMin, setPriceMin] = useState('10')
-  const [priceMax, setPriceMax] = useState('100')
-  const [categoryId, setCategoryId] = useState('')
+const Filters: React.FC = () => {
+  const { searchParams, updateSearchParams } = useSearchParams()
+  const [categoryId, setCategoryId] = useState(
+    searchParams.get('categoryId') || ''
+  )
+  const [priceMin, setPriceMin] = useState(searchParams.get('priceMin') || '')
+  const [priceMax, setPriceMax] = useState(searchParams.get('priceMax') || '')
   const { data: categories } = useGetCategoriesQuery({})
 
+  const throttledCategoryId = useThrottle(categoryId)
   const throttledPriceMin = useThrottle(priceMin)
   const throttledPriceMax = useThrottle(priceMax)
-  const throttledCategoryId = useThrottle(categoryId)
-
-  // const handleFiltersChange = () => {
-  //   setSearchParams({
-  //     priceMin: throttledPriceMin,
-  //     priceMax: throttledPriceMax,
-  //     categoryId: throttledCategoryId
-  //   })
-  //   console.log(`Filters component`)
-  // }
 
   useEffect(() => {
-    setSearchParams({
+    updateSearchParams({
+      categoryId: throttledCategoryId,
       priceMin: throttledPriceMin,
-      priceMax: throttledPriceMax,
-      categoryId: throttledCategoryId
+      priceMax: throttledPriceMax
     })
-    console.log(`Filters component`)
-  }, [throttledPriceMin, throttledPriceMax, throttledCategoryId])
+  }, [
+    throttledCategoryId,
+    throttledPriceMin,
+    throttledPriceMax,
+    updateSearchParams
+  ])
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -79,7 +78,6 @@ const Filters: React.FC<FilterProps> = ({ setSearchParams }) => {
         setPriceMax(value)
       }
     }
-    // handleFiltersChange()
   }
 
   return (
