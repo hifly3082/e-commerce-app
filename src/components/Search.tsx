@@ -2,10 +2,7 @@ import styled from 'styled-components'
 import { CloseOutlined, SearchOutlined } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
 import { useThrottle } from '../hooks/useThrottle'
-
-interface SearchProps {
-  setSearchParams: (searchParams: Record<string, string>) => void
-}
+import { useSearchParams } from '../hooks/useSearchParams'
 
 const SearchContainer = styled.div`
   display: flex;
@@ -32,27 +29,21 @@ const Input = styled.input`
   flex: 1;
 `
 
-const Search: React.FC<SearchProps> = ({ setSearchParams }) => {
-  const [query, setQuery] = useState('')
+const Search: React.FC = () => {
+  const { updateSearchParams, searchParams } = useSearchParams()
+  const [query, setQuery] = useState(searchParams.get('title') || '')
 
   const throttledQuery = useThrottle(query)
 
-  // const handleChangeSearch = () => {
-  // }
-
   useEffect(() => {
-    setSearchParams({ title: throttledQuery })
-    // handleChangeSearch()
-    console.log('searchComponent')
-  }, [throttledQuery])
+    updateSearchParams({ title: throttledQuery })
+  }, [throttledQuery, updateSearchParams])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setSearchParams({ title: e.target.value })
     setQuery(e.target.value)
   }
 
   const handleClear = () => {
-    // setSearchParams({ title: '' })
     setQuery('')
   }
 
