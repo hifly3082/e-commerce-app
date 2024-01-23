@@ -57,15 +57,17 @@ const ShopNowButton = styled.button`
 
 const CategoryItem = ({ item }: { item: ICategory }) => {
   const navigate = useNavigate()
-  const handleClick = (id: number) => () => {
-    navigate(`/products`, { state: { categoryId: id } })
+  const handleClick = (categoryId: string) => () => {
+    navigate(`/products?categoryId=${categoryId}`)
   }
 
   return (
     <CategoryCard key={item.id}>
       <CategoryImage src={item.image} alt={item.name} />
       <CategoryName>{item.name}</CategoryName>
-      <ShopNowButton onClick={handleClick(item.id)}>Shop now</ShopNowButton>
+      <ShopNowButton onClick={handleClick(item.id.toString())}>
+        Shop now
+      </ShopNowButton>
     </CategoryCard>
   )
 }
