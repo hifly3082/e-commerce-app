@@ -12,6 +12,7 @@ import './App.css'
 
 import FullPageSpinner from './components/FullPageSpinner'
 import store from './store/store'
+import { DarkModeProvider } from './context/DarkModeContext'
 
 const Layout = lazy(() => import('./components/Layout'))
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -55,7 +56,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <DarkModeProvider>
+        <RouterProvider router={router} />
+      </DarkModeProvider>
     </Provider>
   )
 }
