@@ -2,12 +2,11 @@ import styled from 'styled-components'
 
 import Search from '../components/Search'
 import Filters from '../components/Filters'
-import ProductsList from './ProductsList'
+import ProductsList from '../components/ProductsList'
 
 import { useGetProductsQuery } from '../features/api/storeApi'
 import { useThrottle } from '../hooks/useThrottle'
 import { useSearchParams } from '../hooks/useSearchParams'
-import { useLocation } from 'react-router-dom'
 
 const PageContainer = styled.div`
   display: flex;
