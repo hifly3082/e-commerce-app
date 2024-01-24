@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import SmallSpinner from './Spinner'
+import Carousel from './Carousel'
 import { useGetProductsQuery } from '../features/api/storeApi'
-import ProductItem from './ProductItem'
-import { IProductItem } from '../types/types'
 
 const Container = styled.div`
   display: flex;
@@ -13,13 +12,6 @@ const Container = styled.div`
   padding: 20px;
   max-width: 1200px;
 `
-
-const ProductList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`
-
 const Products: React.FC = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery({})
 
@@ -29,15 +21,7 @@ const Products: React.FC = () => {
 
   return (
     <Container>
-      {isLoading ? (
-        <SmallSpinner />
-      ) : (
-        <ProductList>
-          {products.slice(2, 10).map((item: IProductItem) => (
-            <ProductItem item={item} key={item.id} />
-          ))}
-        </ProductList>
-      )}
+      {isLoading ? <SmallSpinner /> : <Carousel items={products} />}
     </Container>
   )
 }
