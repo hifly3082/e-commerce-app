@@ -21,6 +21,9 @@ export interface IRootState {
   cart: {
     items: ICartItem[]
   }
+  favorites: {
+    items: IProductItem[]
+  }
 }
 
 export interface SearchParams {
