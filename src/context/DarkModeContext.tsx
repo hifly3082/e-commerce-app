@@ -12,14 +12,16 @@ const DarkModeContext = createContext<DarkModeContextProps | undefined>(
 
 function DarkModeProvider({ children }: { children: React.ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, 'isDarkMode')
+  const darkMode = 'dark-mode'
+  const lightMode = 'light-mode'
 
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.add('dark-mode')
-      document.documentElement.classList.remove('light-mode')
+      document.documentElement.classList.add(darkMode)
+      document.documentElement.classList.remove(lightMode)
     } else {
-      document.documentElement.classList.add('light-mode')
-      document.documentElement.classList.remove('dark-mode')
+      document.documentElement.classList.add(lightMode)
+      document.documentElement.classList.remove(darkMode)
     }
   }, [isDarkMode])
 
