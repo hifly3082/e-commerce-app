@@ -31,7 +31,7 @@ const CartQuantity = styled.div`
   border: 1px solid black;
 `
 
-const Cart = ({ cartQuantity }: { cartQuantity: number }) => {
+const CartLink = ({ cartQuantity }: { cartQuantity: number }) => {
   return (
     <>
       <CartButton>
@@ -44,4 +44,4 @@ const Cart = ({ cartQuantity }: { cartQuantity: number }) => {
   )
 }
 
-export default Cart
+export default CartLink

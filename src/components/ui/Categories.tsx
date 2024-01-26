@@ -21,7 +21,10 @@ const CategoryList = styled.div`
   justify-content: space-between;
 `
 
-// pass onClick
+const Error = styled.p`
+  padding: 1rem;
+`
+
 const Categories = () => {
   const {
     data: categories,
@@ -30,19 +33,16 @@ const Categories = () => {
     isError
   } = useGetCategoriesQuery({})
 
+  if (isLoading || isFetching) return <SmallSpinner />
+  if (isError) return <Error>Something went wrong</Error>
+
   return (
     <Container>
-      {isLoading || isFetching ? (
-        <SmallSpinner />
-      ) : isError ? (
-        <div>Something went wrong</div>
-      ) : (
-        <CategoryList>
-          {categories.slice(0, 5).map((item: ICategory) => (
-            <CategoryItem item={item} key={item.id} />
-          ))}
-        </CategoryList>
-      )}
+      <CategoryList>
+        {categories.map((item: ICategory) => (
+          <CategoryItem item={item} key={item.id} />
+        ))}
+      </CategoryList>
     </Container>
   )
 }

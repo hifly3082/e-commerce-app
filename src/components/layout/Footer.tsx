@@ -77,10 +77,6 @@ const ContactItem = styled.div`
   }
 `
 
-const ContactIcon = styled.img`
-  margin-right: 0.6rem;
-`
-
 const Footer = () => {
   return (
     <Container>

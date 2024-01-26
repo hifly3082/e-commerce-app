@@ -12,10 +12,13 @@ const PageContainer = styled.div`
   align-items: center;
   margin-top: 3rem;
 `
+
 const Container = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 `
+
 const Title = styled.h2`
   margin: 2rem auto 1rem;
   font-size: 2rem;
@@ -23,19 +26,23 @@ const Title = styled.h2`
   text-align: center;
 `
 
-const ProductsPage: React.FC = () => {
+const FavoritesPage: React.FC = () => {
   const favoriteItems = useSelector((state: IRootState) => state.favorites)
 
   return (
     <PageContainer>
       <Title>Favorites</Title>
       <Container>
-        {favoriteItems.items.map((item) => (
-          <ProductItem key={item.id} item={item} />
-        ))}
+        {favoriteItems.items.length ? (
+          favoriteItems.items.map((item) => (
+            <ProductItem key={item.id} item={item} />
+          ))
+        ) : (
+          <div>Start to add favorites</div>
+        )}
       </Container>
     </PageContainer>
   )
 }
 
-export default ProductsPage
+export default FavoritesPage

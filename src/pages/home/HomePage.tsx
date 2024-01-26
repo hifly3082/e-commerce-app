@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Categories from '../../components/ui/Categories'
-import Products from '../../components/ui/ProductsCarousel'
+import ProductsCarousel from '../../components/ui/ProductsCarousel'
 
 const Title = styled.h2`
   margin: 2rem auto 1rem;
@@ -9,14 +9,14 @@ const Title = styled.h2`
   text-align: center;
 `
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <Title>Categories</Title>
       <Categories />
       <Title>Products</Title>
-      <Products />
+      <ProductsCarousel />
     </>
   )
 }
-export default Home
+export default HomePage
