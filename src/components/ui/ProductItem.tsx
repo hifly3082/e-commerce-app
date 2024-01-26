@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-hot-toast'
+import {
+  MdAddShoppingCart,
+  MdFavorite,
+  MdFavoriteBorder,
+  MdOutlineManageSearch
+} from 'react-icons/md'
 import styled from 'styled-components'
 
 import { IProductItem, IRootState } from '../../types/types'
@@ -9,12 +15,6 @@ import {
   addToFavorites,
   removeFromFavorites
 } from '../../features/favorites/favoritesSlice'
-import {
-  MdAddShoppingCart,
-  MdFavorite,
-  MdFavoriteBorder,
-  MdOutlineManageSearch
-} from 'react-icons/md'
 
 const Info = styled.div`
   display: flex;
@@ -65,10 +65,12 @@ const Icon = styled.div`
   justify-content: center;
   margin: 0.6rem;
   transition: all 0.3s ease-in-out;
+
   &:hover {
     background-color: #e9f5f5;
     transform: scale(1.1);
   }
+
   & svg {
     width: 1.4rem;
     height: 1.4rem;
@@ -82,6 +84,7 @@ const ProductItem = ({ item }: { item: IProductItem }) => {
   const isFavorite = favoriteItems.items.some(
     (favorite) => favorite.id === item.id
   )
+
   const handleOverview = (id: number) => () => {
     navigate(`/products/${id}`)
   }
