@@ -1,11 +1,7 @@
-import { useNavigate } from 'react-router'
-import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { ICartItem, IRootState } from '../../types/types'
-import { cartSlice } from '../../features/cart/cartSlice'
-import { Link, NavLink } from 'react-router-dom'
-import { ICartProps } from './CartPage'
+import { Link } from 'react-router-dom'
+import { ICartItem, ICartProps } from '../../types/types'
 
 const Container = styled.div`
   display: flex;
@@ -95,7 +91,41 @@ const Total = styled.div`
   margin: 0.6rem 0;
 `
 
-const Cart: React.FC<ICartProps> = () => {
+const Cart: React.FC<ICartProps> = ({
+  onClearCart,
+  onOverview,
+  onRemoveItem,
+  onIncreaseQty,
+  onDecreaseQty,
+  cartState
+}) => {
+  const shippingFee = 25
+  const cartQuantity = cartState.items.length
+  const totalSum = cartState.items.reduce(
+    (sum: number, item) => sum + item.price * item.quantity,
+    shippingFee
+  )
+
+  const handleClearCart = () => {
+    onClearCart()
+  }
+
+  const handleOverview = (id: number) => () => {
+    onOverview(id)
+  }
+
+  const handleRemoveItem = (item: ICartItem) => () => {
+    onRemoveItem(item)
+  }
+
+  const handleIncrementQuantity = (item: ICartItem) => () => {
+    onIncreaseQty(item)
+  }
+
+  const handleDecrementQuantity = (item: ICartItem) => () => {
+    onDecreaseQty(item)
+  }
+
   return (
     <Container>
       <Header>
