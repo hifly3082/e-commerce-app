@@ -5,7 +5,6 @@ import Filters from '../../components/ui/Filters'
 import ProductsList from './components/ProductsList'
 
 import { useGetProductsQuery } from '../../features/api/storeApi'
-import { useThrottle } from '../../hooks/useThrottle'
 import { useSearchParams } from '../../hooks/useSearchParams'
 
 const PageContainer = styled.div`
@@ -27,8 +26,8 @@ const ProductsPage: React.FC = () => {
 
   const title = searchParams.get('title') || ''
   const categoryId = searchParams.get('categoryId') || ''
-  const priceMin = useThrottle(searchParams.get('priceMin') || '')
-  const priceMax = useThrottle(searchParams.get('priceMax') || '')
+  const priceMin = searchParams.get('priceMin') || ''
+  const priceMax = searchParams.get('priceMax') || ''
 
   const {
     data: products,
