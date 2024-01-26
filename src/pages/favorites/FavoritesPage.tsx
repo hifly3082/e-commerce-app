@@ -12,10 +12,13 @@ const PageContainer = styled.div`
   align-items: center;
   margin-top: 3rem;
 `
+
 const Container = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 `
+
 const Title = styled.h2`
   margin: 2rem auto 1rem;
   font-size: 2rem;
@@ -30,9 +33,13 @@ const ProductsPage: React.FC = () => {
     <PageContainer>
       <Title>Favorites</Title>
       <Container>
-        {favoriteItems.items.map((item) => (
-          <ProductItem key={item.id} item={item} />
-        ))}
+        {favoriteItems.items.length ? (
+          favoriteItems.items.map((item) => (
+            <ProductItem key={item.id} item={item} />
+          ))
+        ) : (
+          <div>Start to add favorites</div>
+        )}
       </Container>
     </PageContainer>
   )
