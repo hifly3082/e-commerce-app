@@ -62,15 +62,13 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
   }, [items])
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % limitedItems.length)
-    console.log(currentIndex)
+    setCurrentIndex((prevIndex) => (prevIndex + 4) % limitedItems.length)
   }
 
   const handlePrev = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + limitedItems.length) % limitedItems.length
+      (prevIndex) => (prevIndex - 4 + limitedItems.length) % limitedItems.length
     )
-    console.log(currentIndex)
   }
 
   return (
@@ -83,9 +81,6 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       </CarouselButton>
       <CarouselContainer>
         <CarouselContent $currentIndex={currentIndex}>
-          {limitedItems.map((item) => (
-            <ProductItem key={item.id} item={item} />
-          ))}
           {limitedItems.map((item) => (
             <ProductItem key={item.id} item={item} />
           ))}
