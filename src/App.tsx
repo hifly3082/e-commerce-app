@@ -1,5 +1,3 @@
-import { Provider } from 'react-redux'
-import { Suspense, lazy } from 'react'
 import {
   Route,
   createBrowserRouter,
@@ -7,9 +5,12 @@ import {
   RouterProvider,
   Navigate
 } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+import { Provider } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
-import { DarkModeProvider } from './context/DarkModeContext'
+
 import store from './store/store'
+import { DarkModeProvider } from './context/DarkModeContext'
 import FullPageSpinner from './components/ui/FullPageSpinner'
 import GlobalStyles from './styles/globalStyles'
 
