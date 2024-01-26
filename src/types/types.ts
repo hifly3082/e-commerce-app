@@ -1,3 +1,12 @@
+export interface IRootState {
+  cart: {
+    items: ICartItem[]
+  }
+  favorites: {
+    items: IProductItem[]
+  }
+}
+
 export interface ICategory {
   id: number
   name: string
@@ -17,16 +26,16 @@ export interface ICartItem extends IProductItem {
   quantity: number
 }
 
-export interface IRootState {
-  cart: {
-    items: ICartItem[]
-  }
-  favorites: {
-    items: IProductItem[]
-  }
+export interface ICartProps {
+  onClearCart: () => void
+  onRemoveItem: (item: ICartItem) => void
+  onOverview: (id: number) => void
+  onIncreaseQty: (item: ICartItem) => void
+  onDecreaseQty: (item: ICartItem) => void
+  cartState: IRootState['cart']
 }
 
-export interface SearchParams {
+export interface ISearchParams {
   title?: string
   priceMin?: string
   priceMax?: string
