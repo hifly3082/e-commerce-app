@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import SmallSpinner from './Spinner'
 import Carousel from './Carousel'
 import { useGetProductsQuery } from '../../features/api/storeApi'
@@ -13,7 +14,11 @@ const Container = styled.div`
   max-width: 1200px;
 `
 
-const Products: React.FC = () => {
+const Error = styled.p`
+  padding: 1rem;
+`
+
+const ProductsCarousel: React.FC = () => {
   const {
     data: products,
     isLoading,
@@ -21,19 +26,14 @@ const Products: React.FC = () => {
     isError
   } = useGetProductsQuery({})
 
-  if (isError) {
-    return <div>Something went wrong</div>
-  }
+  if (isLoading || isFetching) return <SmallSpinner />
+  if (isError) return <Error>Something went wrong</Error>
 
   return (
     <Container>
-      {isLoading || isFetching ? (
-        <SmallSpinner />
-      ) : (
-        <Carousel items={products} />
-      )}
+      <Carousel items={products} />
     </Container>
   )
 }
 
-export default Products
+export default ProductsCarousel
