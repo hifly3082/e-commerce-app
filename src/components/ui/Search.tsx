@@ -36,7 +36,6 @@ const Input = styled.input`
 const Search: React.FC = () => {
   const { updateSearchParams, searchParams } = useSearchParams()
   const [query, setQuery] = useState(searchParams.get('title') || '')
-
   const throttledQuery = useThrottle(query)
 
   useEffect(() => {

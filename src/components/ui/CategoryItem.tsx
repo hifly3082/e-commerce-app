@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
 import { ICategory } from '../../types/types'
 
 const CategoryImage = styled.img`
@@ -54,10 +55,10 @@ const ShopNowButton = styled.button`
     background-color: #444;
   }
 `
-// pass onClick &&
+
 const CategoryItem = ({ item }: { item: ICategory }) => {
   const navigate = useNavigate()
-  const handleClick = (categoryId: string) => () => {
+  const handleClick = (categoryId: number) => () => {
     navigate(`/products?categoryId=${categoryId}`)
   }
 
@@ -65,9 +66,7 @@ const CategoryItem = ({ item }: { item: ICategory }) => {
     <CategoryCard key={item.id}>
       <CategoryImage src={item.image} alt={item.name} />
       <CategoryName>{item.name}</CategoryName>
-      <ShopNowButton onClick={handleClick(item.id.toString())}>
-        Shop now
-      </ShopNowButton>
+      <ShopNowButton onClick={handleClick(item.id)}>Shop now</ShopNowButton>
     </CategoryCard>
   )
 }
