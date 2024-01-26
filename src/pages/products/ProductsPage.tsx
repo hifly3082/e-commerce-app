@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Search from '../../components/ui/Search'
 import Filters from '../../components/ui/Filters'
-import ProductsList from './components/ProductsList'
+import ProductsList from './ProductsList'
 
 import { useGetProductsQuery } from '../../features/api/storeApi'
 import { useSearchParams } from '../../hooks/useSearchParams'

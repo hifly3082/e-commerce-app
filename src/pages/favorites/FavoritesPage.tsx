@@ -26,7 +26,7 @@ const Title = styled.h2`
   text-align: center;
 `
 
-const ProductsPage: React.FC = () => {
+const FavoritesPage: React.FC = () => {
   const favoriteItems = useSelector((state: IRootState) => state.favorites)
 
   return (
@@ -45,4 +45,4 @@ const ProductsPage: React.FC = () => {
   )
 }
 
-export default ProductsPage
+export default FavoritesPage
