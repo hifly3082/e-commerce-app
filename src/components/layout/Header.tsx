@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { MdFavorite } from 'react-icons/md'
 import { IRootState } from '../../types/types'
-import Cart from '../ui/Cart'
+import CartLink from '../ui/CartLink'
 import Switcher from '../ui/Switcher'
 
 const HeaderContainer = styled.div`
@@ -87,7 +87,7 @@ const Header = () => {
           </MenuItem>
           <MenuItem>
             <Link to='cart'>
-              <Cart cartQuantity={cartQuantity} />
+              <CartLink cartQuantity={cartQuantity} />
             </Link>
           </MenuItem>
         </MenuContainer>
