@@ -29,8 +29,8 @@ const CarouselContent = styled.div<{ $currentIndex: number }>`
 const CarouselButton = styled.button<{ direction: string }>`
   position: absolute;
   top: 50%;
-  background: var(--color-grey-500);
-  color: var(--color-grey-100);
+  background: var(--color-grey-300);
+  color: var(--color-grey-900);
   border: none;
   padding: 1rem;
   border: 1px solid transparent;
@@ -43,7 +43,7 @@ const CarouselButton = styled.button<{ direction: string }>`
   ${(props) => (props.direction === 'prev' ? 'left: -1rem' : 'right: -1rem')};
   &:hover {
     background: var(--color-grey-100);
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-grey-300);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     opacity: 100%;
   }

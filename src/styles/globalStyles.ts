@@ -18,21 +18,6 @@ const GlobalStyles = styled.createGlobalStyle`
       --color-grey-800: #1f2937;
       --color-grey-900: #111827;
 
-      --color-blue-100: #e0f2fe;
-      --color-blue-700: #0369a1;
-      --color-green-100: #dcfce7;
-      --color-green-700: #15803d;
-      --color-yellow-100: #fef9c3;
-      --color-yellow-700: #a16207;
-      --color-silver-100: #e5e7eb;
-      --color-silver-700: #374151;
-      --color-indigo-100: #e0e7ff;
-      --color-indigo-700: #4338ca;
-
-      --color-red-100: #fee2e2;
-      --color-red-700: #b91c1c;
-      --color-red-800: #991b1b;
-
       --backdrop-color: rgba(255, 255, 255, 0.1);
 
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -57,21 +42,6 @@ const GlobalStyles = styled.createGlobalStyle`
       --color-grey-800: #f3f4f6;
       --color-grey-900: #f9fafb;
 
-      --color-blue-100: #075985;
-      --color-blue-700: #e0f2fe;
-      --color-green-100: #166534;
-      --color-green-700: #dcfce7;
-      --color-yellow-100: #854d0e;
-      --color-yellow-700: #fef9c3;
-      --color-silver-100: #374151;
-      --color-silver-700: #f3f4f6;
-      --color-indigo-100: #3730a3;
-      --color-indigo-700: #e0e7ff;
-
-      --color-red-100: #fee2e2;
-      --color-red-700: #b91c1c;
-      --color-red-800: #991b1b;
-
       --backdrop-color: rgba(0, 0, 0, 0.3);
 
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -91,11 +61,6 @@ const GlobalStyles = styled.createGlobalStyle`
     --color-brand-700: #4338ca;
     --color-brand-800: #3730a3;
     --color-brand-900: #312e81;
-
-    --border-radius-tiny: 3px;
-    --border-radius-sm: 5px;
-    --border-radius-md: 7px;
-    --border-radius-lg: 9px;
   }
 
   *,
@@ -133,20 +98,6 @@ const GlobalStyles = styled.createGlobalStyle`
 
   *:disabled {
     cursor: not-allowed;
-  }
-
-  select:disabled,
-  input:disabled {
-    background-color: var(--color-grey-200);
-    color: var(--color-grey-500);
-  }
-
-  input:focus,
-  button:focus,
-  textarea:focus,
-  select:focus {
-    outline: 2px solid var(--color-brand-600);
-    outline-offset: -1px;
   }
 
   button:has(svg) {
