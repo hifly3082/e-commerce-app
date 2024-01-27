@@ -18,25 +18,25 @@ const CarouselContainer = styled.div`
   display: flex;
   width: 1200px;
   overflow: hidden;
+  user-select: none;
 `
 
 const CarouselContent = styled.div<{ $currentIndex: number }>`
   display: flex;
-  transition: all 1.2s ease-in-out;
+  transition: all 1.2s ease;
   transform: translateX(-${(props) => props.$currentIndex}%);
 `
 
 const CarouselButton = styled.button<{ direction: string }>`
   position: absolute;
   top: 50%;
-  background: var(--color-grey-300);
+  background-color: var(--color-grey-300);
   color: var(--color-grey-900);
-  border: none;
   padding: 1rem;
   border: 1px solid transparent;
   border-radius: 50%;
   cursor: pointer;
-  opacity: 60%;
+  opacity: 50%;
   z-index: 1;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease-in-out;
