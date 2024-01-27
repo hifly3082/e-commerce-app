@@ -4,6 +4,7 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import ProductItem from './ProductItem'
 import { IProductItem } from '../../types/types'
 import styled from 'styled-components'
+import { BsArrowLeftCircleFill } from 'react-icons/bs'
 
 interface CarouselProps {
   items: IProductItem[]
@@ -27,24 +28,23 @@ const CarouselContent = styled.div<{ $currentIndex: number }>`
   transform: translateX(-${(props) => props.$currentIndex}%);
 `
 
-const CarouselButton = styled.button<{ direction: string }>`
+const CarouselButton = styled(BsArrowLeftCircleFill)<{ direction: string }>`
   position: absolute;
+  font-size: 2.4rem;
   top: 50%;
-  background-color: var(--color-grey-300);
-  color: var(--color-grey-900);
-  padding: 1rem;
-  border: 1px solid transparent;
+  color: var(--color-grey-800);
   border-radius: 50%;
+  border: 1px solid transparent;
   cursor: pointer;
-  opacity: 50%;
-  z-index: 1;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  opacity: 30%;
   transition: all 0.4s ease-in-out;
-  ${(props) => (props.direction === 'prev' ? 'left: -1rem' : 'right: -1rem')};
+
+  ${(props) =>
+    props.direction === 'prev'
+      ? 'left: -5rem'
+      : 'right: -5rem; transform: scaleX(-1)'};
+
   &:hover {
-    background: var(--color-grey-100);
-    border: 1px solid var(--color-grey-300);
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     opacity: 100%;
   }
 `

@@ -25,10 +25,9 @@ const Image = styled.img`
 
 const Arrow = styled(BsArrowLeftCircleFill)`
   position: absolute;
-  width: 2rem;
-  height: 2rem;
+  font-size: 2.4rem;
   top: 50%;
-  color: var(--color-grey-500);
+  color: var(--color-grey-800);
   cursor: pointer;
   &:hover {
     color: var(--color-grey-700);
@@ -36,11 +35,11 @@ const Arrow = styled(BsArrowLeftCircleFill)`
 `
 
 const RightArrow = styled(Arrow)`
-  left: 1rem;
+  left: 5rem;
 `
 
 const LeftArrow = styled(Arrow)`
-  right: 1rem;
+  right: 5rem;
   transform: scaleX(-1);
 `
 
