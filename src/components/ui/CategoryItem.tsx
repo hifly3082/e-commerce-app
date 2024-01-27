@@ -56,17 +56,17 @@ const ShopNowButton = styled.button`
   }
 `
 
-const CategoryItem = ({ item }: { item: ICategory }) => {
-  const navigate = useNavigate()
-  const handleClick = (categoryId: number) => () => {
-    navigate(`/products?categoryId=${categoryId}`)
-  }
+interface ICategoryItemProps {
+  item: ICategory
+  onClick: () => void
+}
 
+const CategoryItem: React.FC<ICategoryItemProps> = ({ item, onClick }) => {
   return (
     <CategoryCard key={item.id}>
       <CategoryImage src={item.image} alt={item.name} />
       <CategoryName>{item.name}</CategoryName>
-      <ShopNowButton onClick={handleClick(item.id)}>Shop now</ShopNowButton>
+      <ShopNowButton onClick={onClick}>Shop now</ShopNowButton>
     </CategoryCard>
   )
 }
