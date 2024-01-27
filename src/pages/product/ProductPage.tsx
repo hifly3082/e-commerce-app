@@ -39,7 +39,7 @@ const ProductPage: React.FC = () => {
     setAmount(amount + 1)
   }
 
-  const handleAddItem = (item: IProductItem) => () => {
+  const handleAddItem = (item: IProductItem) => {
     dispatch(addItemToCart({ ...item, quantity: amount }))
     toast.success('Item successfully added to the cart')
   }
@@ -53,9 +53,7 @@ const ProductPage: React.FC = () => {
     <Product
       product={product}
       amount={amount}
-      setAmount={setAmount}
       index={index}
-      setIndex={setIndex}
       nextIndex={nextIndex}
       prevIndex={prevIndex}
       onAddItem={handleAddItem}

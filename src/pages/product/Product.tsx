@@ -106,9 +106,7 @@ const AddButton = styled(Button)`
 export interface IProductProps {
   product: IProductItem
   amount: number
-  setAmount: (arg: number) => void
   index: number
-  setIndex: (arg: number) => void
   nextIndex: () => void
   prevIndex: () => void
   onIncreaseAmount: () => void
@@ -119,25 +117,15 @@ export interface IProductProps {
 const Product: React.FC<IProductProps> = ({
   product,
   amount,
-  setAmount,
   index,
-  setIndex,
   nextIndex,
   prevIndex,
   onIncreaseAmount,
   onDecreaseAmount,
   onAddItem
 }) => {
-  const handleAddItem = (product: IProductItem) => () => {
+  const handleAddItem = () => {
     onAddItem(product)
-  }
-
-  const handleDecreaseAmount = () => {
-    onDecreaseAmount()
-  }
-
-  const handleIncreaseAmount = () => {
-    onIncreaseAmount()
   }
 
   return (
@@ -154,12 +142,12 @@ const Product: React.FC<IProductProps> = ({
           <Price>$ {product.price}</Price>
           <AddContainer>
             <AmountContainer>
-              <Button onClick={handleDecreaseAmount}>-</Button>
+              <Button onClick={onDecreaseAmount}>-</Button>
               <Amount>{amount}</Amount>
-              <Button onClick={handleIncreaseAmount}>+</Button>
+              <Button onClick={onIncreaseAmount}>+</Button>
             </AmountContainer>
           </AddContainer>
-          <AddButton onClick={handleAddItem(product)}>ADD TO CART</AddButton>
+          <AddButton onClick={handleAddItem}>ADD TO CART</AddButton>
         </InfoContainer>
       </Wrapper>
     </Container>

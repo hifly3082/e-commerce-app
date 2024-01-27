@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import toast from 'react-hot-toast'
 
 import { cartSlice } from '../../features/cart/cartSlice'
-import Cart from './Cart'
 import { ICartItem, IRootState } from '../../types/types'
+import Cart from './Cart'
 
 const CartPage: React.FC = () => {
   const navigate = useNavigate()
