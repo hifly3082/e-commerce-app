@@ -4,6 +4,7 @@ import { ICategory } from '../../types/types'
 import { useGetCategoriesQuery } from '../../features/api/storeApi'
 import CategoryItem from './CategoryItem'
 import SmallSpinner from './Spinner'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +34,12 @@ const Categories = () => {
     isError
   } = useGetCategoriesQuery({})
 
+  const navigate = useNavigate()
+
+  const handleClick = (categoryId: number) => () => {
+    navigate(`/products?categoryId=${categoryId}`)
+  }
+
   if (isLoading || isFetching) return <SmallSpinner />
   if (isError) return <Error>Something went wrong</Error>
 
@@ -40,7 +47,11 @@ const Categories = () => {
     <Container>
       <CategoryList>
         {categories.map((item: ICategory) => (
-          <CategoryItem item={item} key={item.id} />
+          <CategoryItem
+            item={item}
+            key={item.id}
+            onClick={handleClick(item.id)}
+          />
         ))}
       </CategoryList>
     </Container>
