@@ -106,10 +106,6 @@ const Cart: React.FC<ICartProps> = ({
     shippingFee
   )
 
-  const handleClearCart = () => {
-    onClearCart()
-  }
-
   const handleOverview = (id: number) => () => {
     onOverview(id)
   }
@@ -130,9 +126,7 @@ const Cart: React.FC<ICartProps> = ({
     <Container>
       <Header>
         <h2>Cart {cartQuantity > 0 ? '' : 'is empty'}</h2>
-        {cartQuantity > 0 && (
-          <Button onClick={handleClearCart}>Clear Cart</Button>
-        )}
+        {cartQuantity > 0 && <Button onClick={onClearCart}>Clear Cart</Button>}
       </Header>
       {cartState.items.map((item) => (
         <ItemContainer key={item.id}>
