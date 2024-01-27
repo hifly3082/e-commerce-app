@@ -17,15 +17,6 @@ const GlobalStyles = styled.createGlobalStyle`
       --color-grey-700: #374151;
       --color-grey-800: #1f2937;
       --color-grey-900: #111827;
-
-      --backdrop-color: rgba(255, 255, 255, 0.1);
-
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-      --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
-
-      --image-grayscale: 0;
-      --image-opacity: 100%;
     }
 
     &.dark-mode {
@@ -41,26 +32,18 @@ const GlobalStyles = styled.createGlobalStyle`
       --color-grey-700: #e5e7eb;
       --color-grey-800: #f3f4f6;
       --color-grey-900: #f9fafb;
-
-      --backdrop-color: rgba(0, 0, 0, 0.3);
-
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-      --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
-
-      --image-grayscale: 10%;
-      --image-opacity: 90%;
     }
 
-    /* Indigo */
-    --color-brand-50: #eef2ff;
-    --color-brand-100: #e0e7ff;
-    --color-brand-200: #c7d2fe;
-    --color-brand-500: #6366f1;
-    --color-brand-600: #4f46e5;
-    --color-brand-700: #4338ca;
-    --color-brand-800: #3730a3;
-    --color-brand-900: #312e81;
+    --color-main-50: #b3d9d9;
+    --color-main-100: #66b3b3;
+    --color-main-200: #4da6a6;
+    --color-main-300: #339999;
+    --color-main-400: #1a8d8d;
+    --color-main-500: #008080;
+    --color-main-600: #007373;
+    --color-main-700: #006666;
+    --color-main-800: #005a5a;
+    --color-main-900: #004d4d;
   }
 
   *,
@@ -100,8 +83,8 @@ const GlobalStyles = styled.createGlobalStyle`
     cursor: not-allowed;
   }
 
-  button:has(svg) {
-    line-height: 0;
+  &:focus {
+    outline: none;
   }
 
   a {
