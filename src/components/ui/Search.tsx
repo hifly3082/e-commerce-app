@@ -21,16 +21,15 @@ const SearchBar = styled.div`
   padding: 0.6rem;
   width: 100%;
   margin-bottom: 3rem;
+  border: 1px solid var(--color-grey-500);
 `
 
 const Input = styled.input`
   border: none;
   outline: none;
   flex: 1;
+  color: var(--color-grey-900);
   background-color: var(--color-grey-50);
-  &:focus {
-    outline: none;
-  }
 `
 
 const Search: React.FC = () => {

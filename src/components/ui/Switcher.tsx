@@ -12,13 +12,15 @@ const SwitcherWrapper = styled.div`
 const ToggleIcon = styled.div`
   font-size: 1.6rem;
   color: var(--color-grey-700);
-  background-color: var(--color-grey-50);
-  border-radius: 50%;
   transition: all 0.4s ease-in-out;
   padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.4s;
+  &:hover {
+    color: var(--color-main-500);
+  }
 `
 
 const Switcher: React.FC = () => {

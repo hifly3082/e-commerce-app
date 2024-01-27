@@ -40,7 +40,11 @@ const Logo = styled.h1`
 
 const MainPage = styled(Link)`
   text-decoration: none;
-  color: var(--color-grey-900);
+  color: var(--color-grey-800);
+  transition: all 0.8s ease;
+  &:hover {
+    letter-spacing: 1rem;
+  }
 `
 
 const MenuContainer = styled.div`
@@ -60,6 +64,10 @@ const MenuItem = styled.div`
 const FavoriteIcon = styled(MdFavorite)`
   width: 1.6rem;
   height: 1.6rem;
+  transition: all 0.4s;
+  &:hover {
+    color: var(--color-main-600);
+  }
 `
 
 const Header = () => {

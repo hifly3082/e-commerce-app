@@ -28,9 +28,11 @@ const SocialContainer = styled.div`
 const SocialIcon = styled.div`
   cursor: pointer;
   transition: all 0.4s ease-in-out;
-  color: var(--color-brand-800);
+  color: var(--color-grey-500);
+
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    color: var(--color-main-500);
   }
   & svg {
     width: 2.2rem;

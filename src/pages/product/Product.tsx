@@ -15,6 +15,7 @@ const ImgContainer = styled.div`
   flex: 1;
   justify-content: center;
   position: relative;
+  user-select: none;
 `
 
 const Image = styled.img`
@@ -27,10 +28,10 @@ const Arrow = styled(BsArrowLeftCircleFill)`
   width: 2rem;
   height: 2rem;
   top: 50%;
-  color: #fff;
+  color: var(--color-grey-500);
   cursor: pointer;
   &:hover {
-    color: #444;
+    color: var(--color-grey-700);
   }
 `
 
@@ -76,10 +77,11 @@ const AmountContainer = styled.div`
 `
 
 const Amount = styled.span`
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid teal;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  color: var(--color-grey-800);
+  border: 1px solid var(--color-main-500);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,20 +89,27 @@ const Amount = styled.span`
 `
 
 const Button = styled.button`
-  background-color: #fff;
-  border: 1px solid #ccc;
+  color: var(--color-grey-800);
+  background-color: var(--color-grey-100);
+  border: 1px solid var(--color-grey-500);
   border-radius: 5px;
-  padding: 0.5rem;
-
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
+
   &:hover {
-    background-color: #ccc;
+    background-color: var(--color-grey-200);
   }
 `
 
 const AddButton = styled(Button)`
   margin-top: 1rem;
+  color: var(--color-grey-50);
+  background-color: var(--color-main-300);
+
+  &:hover {
+    background-color: var(--color-main-500);
+  }
 `
 
 export interface IProductProps {

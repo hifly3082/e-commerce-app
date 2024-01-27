@@ -12,7 +12,7 @@ const FiltersContainer = styled.div`
   justify-content: space-around;
   width: 800px;
   padding: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-grey-500);
 `
 
 const Label = styled.label`
@@ -25,12 +25,14 @@ const Input = styled.input`
   padding: 0.5rem;
   font-size: 1rem;
   background-color: var(--color-grey-50);
+  border: 1px solid var(--color-grey-500);
 `
 
 const Select = styled.select`
   padding: 0.5rem;
   font-size: 1rem;
   background-color: var(--color-grey-50);
+  border: 1px solid var(--color-grey-500);
 `
 
 const Option = styled.option``
@@ -71,10 +73,10 @@ const Filters: React.FC = () => {
         setCategoryId(value)
         break
       case 'priceMin':
-        setPriceMin(value)
+        if (parseFloat(value) >= 0) setPriceMin(value)
         break
       case 'priceMax':
-        setPriceMax(value)
+        if (parseFloat(value) >= 0) setPriceMax(value)
         break
       default:
         break

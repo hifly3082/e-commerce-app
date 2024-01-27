@@ -37,57 +37,63 @@ const ItemName = styled.h3`
   font-size: 1.2rem;
   font-weight: 500;
   margin-left: 1rem;
+  color: var(--color-grey-800);
 `
 
 const Quantity = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  color: var(--color-grey-800);
 `
 
 const ItemPrice = styled.p`
   font-size: 1rem;
   font-weight: 600;
-  color: #666;
+  color: var(--color-grey-800);
   margin: 0 3rem;
 `
 
 const ItemQuantity = styled.p`
   font-size: 1rem;
   font-weight: 400;
-  color: #444;
+  color: var(--color-grey-800);
   margin: 0 1rem;
 `
 
 const Button = styled.button`
-  background-color: #fff;
-  border: 1px solid #ccc;
+  color: var(--color-grey-800);
+  background-color: var(--color-grey-100);
+  border: 1px solid var(--color-grey-500);
   border-radius: 5px;
-  padding: 5px;
+  padding: 0.5rem;
 
   cursor: pointer;
   transition: all 0.4s ease-in-out;
   &:hover {
-    background-color: #ccc;
+    background-color: var(--color-grey-200);
   }
 `
 
 const Checkout = styled(Button)`
-  background-color: teal;
-  color: #fff;
   margin-top: 1rem;
+  background-color: var(--color-main-300);
+  color: var(--color-grey-50);
+  &:hover {
+    background-color: var(--color-main-500);
+  }
 `
 
 const Return = styled(Link)`
   text-decoration: none;
-  color: #000;
+  color: var(--color-grey-800);
 `
 
 const Total = styled.div`
   text-align: right;
   font-size: 1rem;
   font-weight: 600;
-  color: #666;
+  color: var(--color-grey-800);
   margin: 0.6rem 0;
 `
 
@@ -141,7 +147,7 @@ const Cart: React.FC<ICartProps> = ({
             <ItemQuantity>{item.quantity}</ItemQuantity>
             <Button onClick={handleIncrementQuantity(item)}>+</Button>
           </Quantity>
-          <ItemPrice>${item.price * item.quantity}</ItemPrice>
+          <ItemPrice>$ {item.price * item.quantity}</ItemPrice>
           <Button onClick={handleRemoveItem(item)}>Remove</Button>
         </ItemContainer>
       ))}

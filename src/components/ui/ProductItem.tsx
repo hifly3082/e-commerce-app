@@ -56,10 +56,10 @@ const Image = styled.img`
 `
 
 const Icon = styled.div`
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: 50%;
-  background-color: var(--color-grey-300);
+  background-color: var(--color-grey-100);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,8 +67,7 @@ const Icon = styled.div`
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: var(--color-grey-400);
-    transform: scale(1.1);
+    background-color: var(--color-main-100);
   }
 
   & svg {
