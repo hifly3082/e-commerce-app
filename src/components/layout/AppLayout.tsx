@@ -12,6 +12,9 @@ const Container = styled.div`
 
 const Main = styled.main`
   flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const AppLayout: React.FC = () => {
