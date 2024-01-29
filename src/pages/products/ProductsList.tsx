@@ -1,13 +1,7 @@
 import styled from 'styled-components'
-import ProductItem from '../../components/ui/ProductItem'
-import { IProductItem } from '../../types/types'
+import ProductItem from '../../components/ui/products/ProductItem'
+import { IProductItem, IProductsListProps } from '../../types/types'
 import SmallSpinner from '../../components/ui/Spinner'
-
-interface ProductsListProps {
-  products: IProductItem[]
-  isLoading: boolean
-  isError: boolean
-}
 
 const Products = styled.div`
   padding-top: 1.5rem;
@@ -19,17 +13,16 @@ const Error = styled.p`
   padding: 1rem;
 `
 
-const ProductsList: React.FC<ProductsListProps> = ({
+const ProductsList: React.FC<IProductsListProps> = ({
   products,
   isLoading,
   isError
 }) => {
   if (isLoading) return <SmallSpinner />
   if (isError) return <Error>Error fetching data</Error>
+  if (products?.length < 1) return <Error>Products not found</Error>
 
-  return products?.length < 1 ? (
-    <Error>Products not found</Error>
-  ) : (
+  return (
     <Products>
       {products?.map((item: IProductItem) => (
         <ProductItem key={item.id} item={item} />
