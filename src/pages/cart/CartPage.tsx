@@ -6,7 +6,7 @@ import { cartSlice } from '../../features/cart/cartSlice'
 import { ICartItem, IRootState } from '../../types/types'
 import Cart from './Cart'
 
-const shippingFee = 25
+const SHIPPING_FEE = 25
 
 const CartPage: React.FC = () => {
   const navigate = useNavigate()
@@ -16,7 +16,7 @@ const CartPage: React.FC = () => {
   const cartLength = cartItems.length
   const totalSum = cartItems.reduce(
     (sum: number, item) => sum + item.price * item.quantity,
-    shippingFee
+    SHIPPING_FEE
   )
 
   const handleClearCart = () => {
@@ -48,7 +48,7 @@ const CartPage: React.FC = () => {
       onRemoveItemById={handleRemoveItemById}
       onIncreaseQty={handleIncrementQuantity}
       onDecreaseQty={handleDecrementQuantity}
-      shippingFee={shippingFee}
+      shippingFee={SHIPPING_FEE}
       cartItems={cartItems}
       cartLength={cartLength}
       totalSum={totalSum}
