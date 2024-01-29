@@ -110,19 +110,19 @@ const Cart: React.FC<ICartProps> = ({
   totalSum
 }) => {
   const handleOverviewById = (id: number) => () => {
-    onOverviewById(id)
+    onOverviewById && onOverviewById(id)
   }
 
   const handleRemoveItem = (id: number) => () => {
-    onRemoveItemById(id)
+    onRemoveItemById && onRemoveItemById(id)
   }
 
   const handleIncrementQuantity = (item: ICartItem) => () => {
-    onIncreaseQty(item)
+    onIncreaseQty && onIncreaseQty(item)
   }
 
   const handleDecrementQuantity = (item: ICartItem) => () => {
-    onDecreaseQty(item)
+    onDecreaseQty && onDecreaseQty(item)
   }
 
   return (
