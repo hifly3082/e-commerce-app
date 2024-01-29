@@ -35,7 +35,9 @@ const Select = styled.select`
   border: 1px solid var(--color-grey-500);
 `
 
-const Option = styled.option``
+const Option = styled.option`
+  background-color: var(--color-grey-50);
+`
 
 const Filters: React.FC = () => {
   const { searchParams, updateSearchParams } = useSearchParams()
@@ -73,10 +75,10 @@ const Filters: React.FC = () => {
         setCategoryId(value)
         break
       case 'priceMin':
-        if (parseFloat(value) >= 0) setPriceMin(value)
+        if (value === '' || parseFloat(value) >= 0) setPriceMin(value)
         break
       case 'priceMax':
-        if (parseFloat(value) >= 0) setPriceMax(value)
+        if (value === '' || parseFloat(value) >= 0) setPriceMax(value)
         break
       default:
         break
