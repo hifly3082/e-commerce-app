@@ -20,6 +20,8 @@ const CartPage = lazy(() => import('./pages/cart/CartPage'))
 const FavoritesPage = lazy(() => import('./pages/favorites/FavoritesPage'))
 const ProductsPage = lazy(() => import('./pages/products/ProductsPage'))
 const ProductPage = lazy(() => import('./pages/product/ProductPage'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+const ComingSoon = lazy(() => import('./pages/ComingSoon'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +34,8 @@ const router = createBrowserRouter(
       }>
       <Route index element={<Navigate replace to='home' />} />
       <Route path='home' element={<HomePage />} />
+      <Route path='*' element={<NotFound />} />
+      <Route path='soon' element={<ComingSoon />} />
       <Route path='cart' element={<CartPage />} />
       <Route path='favorites' element={<FavoritesPage />} />
       <Route path='products/*'>

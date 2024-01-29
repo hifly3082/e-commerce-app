@@ -13,9 +13,12 @@ const Info = styled.div`
   padding: 1.4rem;
 `
 
-const Logo = styled.h1``
+const Logo = styled.h1`
+  color: var(--color-grey-800);
+`
 
 const Description = styled.p`
+  color: var(--color-grey-800);
   margin: 1.4rem 0;
   width: 80%;
 `
@@ -34,6 +37,7 @@ const SocialIcon = styled.div`
     transform: scale(1.05);
     color: var(--color-main-500);
   }
+
   & svg {
     width: 2.2rem;
     height: 2.2rem;
@@ -53,8 +57,8 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `
 
 const ListItem = styled.li`
@@ -72,6 +76,7 @@ const ContactItem = styled.div`
   margin-bottom: 1.4rem;
   display: flex;
   align-items: center;
+
   & svg {
     width: 1.2rem;
     height: 1.2rem;
@@ -105,15 +110,14 @@ const Footer = () => {
       <SiteMap>
         <Title>Site map</Title>
         <List>
-          <ListItem>Woman Fashion</ListItem>
+          <ListItem>Clothes</ListItem>
           <ListItem>Cart</ListItem>
           <ListItem>Home</ListItem>
-          <ListItem>Man Fashion</ListItem>
+          <ListItem>Electronics</ListItem>
           <ListItem>Wishlist</ListItem>
           <ListItem>Account</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>Order Tracking</ListItem>
-
+          <ListItem>Furniture</ListItem>
+          <ListItem>Tracking</ListItem>
           <ListItem>Terms</ListItem>
         </List>
       </SiteMap>
@@ -125,7 +129,7 @@ const Footer = () => {
         </ContactItem>
         <ContactItem>
           <HiPhone />
-          +98 765 4321
+          +09 876 543 21 00
         </ContactItem>
         <ContactItem>
           <HiMail />

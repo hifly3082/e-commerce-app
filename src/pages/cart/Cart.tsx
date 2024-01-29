@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { ICartItem, ICartProps } from '../../types/types'
 
 const Container = styled.div`
@@ -67,26 +67,27 @@ const Button = styled.button`
   border: 1px solid var(--color-grey-500);
   border-radius: 5px;
   padding: 0.5rem;
-
   cursor: pointer;
   transition: all 0.4s ease-in-out;
+
   &:hover {
     background-color: var(--color-grey-200);
   }
 `
 
-const Checkout = styled(Button)`
-  margin-top: 1rem;
+const CheckoutButton = styled(Button)`
   background-color: var(--color-main-300);
-  color: var(--color-grey-50);
+  margin-top: 1rem;
+
   &:hover {
     background-color: var(--color-main-500);
   }
 `
 
-const Return = styled(Link)`
+const Link = styled(NavLink)`
   text-decoration: none;
   color: var(--color-grey-800);
+  align-self: flex-end;
 `
 
 const Total = styled.div`
@@ -99,25 +100,21 @@ const Total = styled.div`
 
 const Cart: React.FC<ICartProps> = ({
   onClearCart,
-  onOverview,
-  onRemoveItem,
+  onOverviewById,
+  onRemoveItemById,
   onIncreaseQty,
   onDecreaseQty,
-  cartState
+  shippingFee,
+  cartItems,
+  cartLength,
+  totalSum
 }) => {
-  const shippingFee = 25
-  const cartQuantity = cartState.items.length
-  const totalSum = cartState.items.reduce(
-    (sum: number, item) => sum + item.price * item.quantity,
-    shippingFee
-  )
-
-  const handleOverview = (id: number) => () => {
-    onOverview(id)
+  const handleOverviewById = (id: number) => () => {
+    onOverviewById(id)
   }
 
-  const handleRemoveItem = (item: ICartItem) => () => {
-    onRemoveItem(item)
+  const handleRemoveItem = (id: number) => () => {
+    onRemoveItemById(id)
   }
 
   const handleIncrementQuantity = (item: ICartItem) => () => {
@@ -131,15 +128,15 @@ const Cart: React.FC<ICartProps> = ({
   return (
     <Container>
       <Header>
-        <h2>Cart {cartQuantity > 0 ? '' : 'is empty'}</h2>
-        {cartQuantity > 0 && <Button onClick={onClearCart}>Clear Cart</Button>}
+        <h2>Cart {cartLength > 0 ? '' : 'is empty'}</h2>
+        {cartLength > 0 && <Button onClick={onClearCart}>Clear Cart</Button>}
       </Header>
-      {cartState.items.map((item) => (
+      {cartItems.map((item) => (
         <ItemContainer key={item.id}>
           <ItemImage
             src={item.images[0]}
             alt={item.title}
-            onClick={handleOverview(item.id)}
+            onClick={handleOverviewById(item.id)}
           />
           <ItemName>{item.title}</ItemName>
           <Quantity>
@@ -148,18 +145,24 @@ const Cart: React.FC<ICartProps> = ({
             <Button onClick={handleIncrementQuantity(item)}>+</Button>
           </Quantity>
           <ItemPrice>$ {item.price * item.quantity}</ItemPrice>
-          <Button onClick={handleRemoveItem(item)}>Remove</Button>
+          <Button onClick={handleRemoveItem(item.id)}>Remove</Button>
         </ItemContainer>
       ))}
-      <hr />
-      <Total>Shipping fee: $ {cartQuantity > 0 ? shippingFee : 0}</Total>
-      <Total>Total Sum: $ {cartQuantity > 0 ? totalSum : 0}</Total>
-      {cartQuantity > 0 ? (
-        <Checkout>Proceed to checkout</Checkout>
+
+      {cartLength > 0 ? (
+        <>
+          <hr />
+          <Total>Shipping fee: $ {cartLength > 0 ? shippingFee : 0}</Total>
+          <Total>Total Sum: $ {cartLength > 0 ? totalSum : 0}</Total>
+
+          <Link to='/soon'>
+            <CheckoutButton>Proceed to checkout</CheckoutButton>
+          </Link>
+        </>
       ) : (
-        <Button>
-          <Return to='/home'>Return to shopping</Return>
-        </Button>
+        <Link to='/products'>
+          <Button>Return to shopping </Button>
+        </Link>
       )}
     </Container>
   )

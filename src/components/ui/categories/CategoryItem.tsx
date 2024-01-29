@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { ICategory } from '../../types/types'
+import { ICategory } from '../../../types/types'
 
 const CategoryImage = styled.img`
   width: 100%;
@@ -50,7 +50,7 @@ const ShopNowButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
 
   &:hover {
     background-color: var(--color-main-500);

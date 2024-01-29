@@ -54,17 +54,26 @@ const GlobalStyles = styled.createGlobalStyle`
     margin: 0;
 
     /* Creating animations for dark mode */
-    transition: background-color 0.3s, border 0.3s;
+    transition: background-color 0.4s, border 0.4s;
   }
 
   body {
     font-family: 'Quicksand', sans-serif;
     color: var(--color-grey-700);
 
-    transition: color 0.3s, background-color 0.3s;
+    transition: color 0.4s, background-color 0.4s;
     min-height: 100vh;
     line-height: 1.5;
     font-size: 1rem;
+
+    /* Hide scrollbar for IE, Edge, Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Hide scrollbar for Chrome, Safari, Opera */
+  ::-webkit-scrollbar {
+    display: none;
   }
 
   input,
@@ -77,10 +86,6 @@ const GlobalStyles = styled.createGlobalStyle`
 
   button {
     cursor: pointer;
-  }
-
-  *:disabled {
-    cursor: not-allowed;
   }
 
   &:focus {
@@ -96,22 +101,8 @@ const GlobalStyles = styled.createGlobalStyle`
     list-style: none;
   }
 
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    overflow-wrap: break-word;
-    hyphens: auto;
-  }
-
   img {
     max-width: 100%;
-
-    /* For dark mode */
-    filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
   }
 `
 

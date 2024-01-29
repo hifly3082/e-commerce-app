@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import { ICategory } from '../../types/types'
-import { useGetCategoriesQuery } from '../../features/api/storeApi'
+import { ICategory } from '../../../types/types'
+import { useGetCategoriesQuery } from '../../../features/api/storeApi'
 import CategoryItem from './CategoryItem'
-import SmallSpinner from './Spinner'
+import SmallSpinner from '../Spinner'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
@@ -35,6 +35,7 @@ const Categories = () => {
   } = useGetCategoriesQuery({})
 
   const navigate = useNavigate()
+  const limitedCategories = categories?.slice(0, 5)
 
   const handleClick = (categoryId: number) => () => {
     navigate(`/products?categoryId=${categoryId}`)
@@ -46,7 +47,7 @@ const Categories = () => {
   return (
     <Container>
       <CategoryList>
-        {categories.map((item: ICategory) => (
+        {limitedCategories?.map((item: ICategory) => (
           <CategoryItem
             item={item}
             key={item.id}

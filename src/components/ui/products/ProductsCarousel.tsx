@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import SmallSpinner from './Spinner'
-import Carousel from './Carousel'
-import { useGetProductsQuery } from '../../features/api/storeApi'
+import SmallSpinner from '../Spinner'
+import Carousel from '../Carousel'
+import { useGetProductsQuery } from '../../../features/api/storeApi'
 
 const Container = styled.div`
   display: flex;

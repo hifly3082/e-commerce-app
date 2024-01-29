@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICartItem } from '../../types/types'
-
-interface ICartState {
-  items: ICartItem[]
-}
+import { ICartItem, ICartState } from '../../types/types'
 
 const initialState: ICartState = {
   items: []
@@ -23,10 +19,8 @@ export const cartSlice = createSlice({
         state.items.push(action.payload)
       }
     },
-    removeItemFromCart: (state, action: PayloadAction<ICartItem>) => {
-      state.items = state.items.filter(
-        (item: ICartItem) => item.id !== action.payload.id
-      )
+    removeItemFromCart: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload)
     },
     clearCart: (state) => {
       state.items = []

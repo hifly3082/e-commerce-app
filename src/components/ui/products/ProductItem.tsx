@@ -9,12 +9,12 @@ import {
 } from 'react-icons/md'
 import styled from 'styled-components'
 
-import { IProductItem, IRootState } from '../../types/types'
-import { addItemToCart } from '../../features/cart/cartSlice'
+import { IProductItem, IRootState } from '../../../types/types'
+import { addItemToCart } from '../../../features/cart/cartSlice'
 import {
   addToFavorites,
   removeFromFavorites
-} from '../../features/favorites/favoritesSlice'
+} from '../../../features/favorites/favoritesSlice'
 
 const Info = styled.div`
   display: flex;

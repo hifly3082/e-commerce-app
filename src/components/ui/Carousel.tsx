@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
-import ProductItem from './ProductItem'
+import ProductItem from './products/ProductItem'
 import { IProductItem } from '../../types/types'
 import styled from 'styled-components'
 import { BsArrowLeftCircleFill } from 'react-icons/bs'
@@ -48,6 +48,8 @@ const CarouselButton = styled(BsArrowLeftCircleFill)<{ direction: string }>`
     opacity: 100%;
   }
 `
+const slideLength = 4
+const delay = 5000
 
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -55,19 +57,22 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => prevIndex + 4)
-    }, 5000)
+      setCurrentIndex((prevIndex) => prevIndex + slideLength)
+    }, delay)
 
     return () => clearInterval(interval)
   }, [items])
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 4) % limitedItems.length)
+    setCurrentIndex(
+      (prevIndex) => (prevIndex + slideLength) % limitedItems.length
+    )
   }
 
   const handlePrev = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 4 + limitedItems.length) % limitedItems.length
+      (prevIndex) =>
+        (prevIndex - slideLength + limitedItems.length) % limitedItems.length
     )
   }
 
