@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { useSelector } from 'react-redux'
 import { IRootState } from '../../types/types'
-import ProductItem from '../../components/ui/ProductItem'
+import ProductItem from '../../components/ui/products/ProductItem'
 
 const PageContainer = styled.div`
   display: flex;
