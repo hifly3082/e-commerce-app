@@ -121,7 +121,7 @@ const Product: React.FC<IProductProps> = ({
   onAddItem
 }) => {
   const handleAddItem = () => {
-    product && onAddItem(product)
+    onAddItem && onAddItem(product)
   }
 
   return (
