@@ -75,10 +75,10 @@ const Filters: React.FC = () => {
         setCategoryId(value)
         break
       case 'priceMin':
-        if (value === '' || parseFloat(value) >= 0) setPriceMin(value)
+        if (parseFloat(value || '0') >= 0) setPriceMin(value)
         break
       case 'priceMax':
-        if (value === '' || parseFloat(value) >= 0) setPriceMax(value)
+        if (parseFloat(value || '0') >= 0) setPriceMax(value)
         break
       default:
         break
