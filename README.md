@@ -1,27 +1,32 @@
-# Todo app
+# E-commerce app
 
-### General Information
+### Requirements
 
--header > search, logo, shopping cart
--main > product categories, product list > product item
-+shopping cart
-+checkout
--footer > social, sitemap, contacts
+- The users should be able to navigate the categories and products
+- The users should be able to search products by name, category, or price range
+- The users should be able to add products to the cart, remove them, or change the quantity
+- The users should be able to add products to the favorites list
+- The users should get notifications on taking actions
+
+API: [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/)
 
 ### Tech Stack
 
-- Vite
-- TypeScript
-- React
-  Routing: React router
-  State management: Redux
-  Authentication: Auth0
-  Payment: Stripe
-  Styling: styled-components, MUI
-
-API: https://fakestoreapi.com/
+- React 18.2
+- Redux 9.1 / RTK 2.0
+- React Router 6.21
+- TypeScript 4.9.5
+- Node package manager 9.3
+- styled-components 6.1
+- react-hot-toast 2.4
 
 ### Features
+
+- Product listings for displaying products with detailed information
+- Dynamic search and filters for providing efficient data updates
+- Real-time notifications for handling cart and favorites list
+- Seamless UX with Redux state management
+- Dark mode for better UI accessibility
 
 ### Installation and setup
 
@@ -45,5 +50,5 @@ npm install
 To run the application, use the following command:
 
 ```bash
-npm run dev
+npm start
 ```
