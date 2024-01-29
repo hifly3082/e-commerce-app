@@ -8,6 +8,8 @@ import { BsArrowLeftCircleFill } from 'react-icons/bs'
 
 interface CarouselProps {
   items: IProductItem[]
+  delay?: number
+  slideLength?: number
 }
 
 const CarouselWrapper = styled.div`
@@ -48,10 +50,14 @@ const CarouselButton = styled(BsArrowLeftCircleFill)<{ direction: string }>`
     opacity: 100%;
   }
 `
-const slideLength = 4
-const delay = 5000
+const SLIDE_LENGTH = 4
+const DELAY = 5000
 
-const Carousel: React.FC<CarouselProps> = ({ items }) => {
+const Carousel: React.FC<CarouselProps> = ({
+  items,
+  delay = DELAY,
+  slideLength = SLIDE_LENGTH
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const limitedItems = items?.slice(0, 35)
 
@@ -61,7 +67,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     }, delay)
 
     return () => clearInterval(interval)
-  }, [items])
+  }, [items, delay, slideLength])
 
   const handleNext = () => {
     setCurrentIndex(
@@ -72,7 +78,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const handlePrev = () => {
     setCurrentIndex(
       (prevIndex) =>
-        (prevIndex - slideLength + limitedItems.length) % limitedItems.length
+        (prevIndex - SLIDE_LENGTH + limitedItems.length) % limitedItems.length
     )
   }
 
