@@ -6,23 +6,31 @@ import { cartSlice } from '../../features/cart/cartSlice'
 import { ICartItem, IRootState } from '../../types/types'
 import Cart from './Cart'
 
+const shippingFee = 25
+
 const CartPage: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const cartState = useSelector((state: IRootState) => state.cart)
+
+  const cartItems = useSelector((state: IRootState) => state.cart.items)
+  const cartLength = cartItems.length
+  const totalSum = cartItems.reduce(
+    (sum: number, item) => sum + item.price * item.quantity,
+    shippingFee
+  )
 
   const handleClearCart = () => {
     dispatch(cartSlice.actions.clearCart())
     toast.success('All items are removed from the cart')
   }
 
-  const handleOverview = (id: number) => {
+  const handleOverviewById = (id: number) => {
     navigate(`/products/${id}`)
   }
 
-  const handleRemoveItem = (item: ICartItem) => {
-    dispatch(cartSlice.actions.removeItemFromCart(item))
-    toast.success('Item successfully deleted from to the cart')
+  const handleRemoveItemById = (id: number) => {
+    dispatch(cartSlice.actions.removeItemFromCart(id))
+    toast.success('Item deleted from to the cart')
   }
 
   const handleIncrementQuantity = (item: ICartItem) => {
@@ -36,11 +44,14 @@ const CartPage: React.FC = () => {
   return (
     <Cart
       onClearCart={handleClearCart}
-      onOverview={handleOverview}
-      onRemoveItem={handleRemoveItem}
+      onOverviewById={handleOverviewById}
+      onRemoveItemById={handleRemoveItemById}
       onIncreaseQty={handleIncrementQuantity}
       onDecreaseQty={handleDecrementQuantity}
-      cartState={cartState}
+      shippingFee={shippingFee}
+      cartItems={cartItems}
+      cartLength={cartLength}
+      totalSum={totalSum}
     />
   )
 }
