@@ -1,7 +1,7 @@
 import { BsArrowLeftCircleFill } from 'react-icons/bs'
 import styled from 'styled-components'
 
-import { IProductItem } from '../../types/types'
+import { IProductProps } from '../../types/types'
 
 const Container = styled.div``
 
@@ -110,18 +110,6 @@ const AddButton = styled(Button)`
     background-color: var(--color-main-500);
   }
 `
-
-export interface IProductProps {
-  product: IProductItem
-  amount: number
-  index: number
-  nextIndex: () => void
-  prevIndex: () => void
-  onIncreaseAmount: () => void
-  onDecreaseAmount: () => void
-  onAddItem: (item: IProductItem) => void
-}
-
 const Product: React.FC<IProductProps> = ({
   product,
   amount,
@@ -133,7 +121,7 @@ const Product: React.FC<IProductProps> = ({
   onAddItem
 }) => {
   const handleAddItem = () => {
-    onAddItem(product)
+    product && onAddItem(product)
   }
 
   return (
