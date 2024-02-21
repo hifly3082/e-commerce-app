@@ -42,7 +42,8 @@ const MainPage = styled(Link)`
   font-size: 2.8rem;
   color: var(--color-grey-800);
   text-decoration: none;
-  letter-spacing: 1.2rem;
+  letter-spacing: 1.6rem;
+
   transition: all 0.8s ease;
 
   &:hover {

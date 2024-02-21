@@ -48,6 +48,7 @@ const CarouselButton = styled(BsArrowLeftCircleFill)<{ direction: string }>`
 
   &:hover {
     opacity: 100%;
+    color: var(--color-main-300);
   }
 `
 const SLIDE_LENGTH = 4
@@ -59,7 +60,7 @@ const Carousel: React.FC<CarouselProps> = ({
   slideLength = SLIDE_LENGTH
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const limitedItems = items?.slice(0, 35)
+  const limitedItems = items?.slice(0, 30)
 
   useEffect(() => {
     const interval = setInterval(() => {
