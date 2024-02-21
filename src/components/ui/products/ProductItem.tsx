@@ -37,7 +37,7 @@ const Container = styled.div`
   flex: 1;
   position: relative;
   margin: 0.5rem;
-  min-width: 18rem;
+  width: 18rem;
   height: 21rem;
   display: flex;
   align-items: center;
@@ -64,16 +64,15 @@ const Icon = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0.6rem;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    background-color: var(--color-main-100);
-  }
 
   & svg {
-    width: 1.4rem;
-    height: 1.4rem;
-    color: var(--color-grey-900);
+    font-size: 1.4rem;
+    transition: all 0.4s ease-in-out;
+  }
+  &:hover {
+    & svg {
+      color: var(--color-main-300);
+    }
   }
 `
 
